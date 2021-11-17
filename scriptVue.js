@@ -6,6 +6,7 @@ var user= new Vue({
           password: '',
           address: '',
           age: 0,
+          gender: ' ',
           zipcode: 0,
           height: 0,
           weight: 0,
@@ -38,14 +39,20 @@ var eventsInfo = new Vue({
   methods: {
       submit:function() {
         //keyword search
-
+        
       },
       calculateCalories: function() {
+        if (user.gender === "male") {
+
+        }
           //if male
           //BMR = 10W + 6.25H - 5A + 5
 
           //if female
           //BMR = 10W + 6.25H - 5A - 161
+      },
+      calculateDistance: function() {
+
       },
       sortEvents: function() {
         //sort based 
@@ -53,7 +60,7 @@ var eventsInfo = new Vue({
       },
       addEvents: function() {
           //add more events
-          this.eventsList.push({name:"Fiat", location:"500", distance:"white", price: 0, openSpots: 0, peopleAttending: 0, reccuring: false, calories: 0});
+          this.eventsList.push({name:"MVMNT Fit Cycling", type: ["cycling", "HIIT"], location:"1300 South University Avenue suite 6 , Ann Arbor MI 48104", distance:0, price: null, openSpots: 0, peopleAttending: 0, reccuring: false, calories: 0, duration: 60});
           //update numEvents
       }
   }
