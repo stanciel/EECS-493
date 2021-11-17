@@ -1,1 +1,51 @@
 
+<!DOCTYPE html>
+<html lang="en-US">
+   <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+      <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+
+    <link rel="stylesheet" href="eecs493.css">
+   </head>
+
+     <body>
+
+     <div id="app">
+          <button type="button" class="login">log in</button>
+          <button type="button" class="signup">sign up</button>
+          <div class="signup-form">
+              <input type="text" placeholder="Email Address" class="input" v-model="email">
+              <input type="text" placeholder="Password" class="input" v-model="password">
+              <input type="text" placeholder="Re-enter Password" class="input">
+              <input type="text" placeholder="First Name" class="input" v-model="firstname">
+              <input type="text" placeholder="Last Name" class="input" v-model="lastname">
+              <input type="text" placeholder="Home Address" class="input" v-model="address">
+              <input type="text" placeholder="Zip Code" class="input" v-model="zipcode">
+              <input type="text" placeholder="Age" class="input" v-model="age">
+              <input type="text" placeholder="Weight" class="input" v-model="weight">
+              <input type="text" placeholder="Height" class="input" v-model="height">
+              <button class="btn" v-on:click="createAccount">Create Account</button>
+          </div>
+
+          <div class="search-container">
+            <input type="text" placeholder="Search.." name="search">
+            <button type="submit"><i class="fa fa-search"></i></button>
+          </div>
+          <!--<div v-if="numEvents > 0"  v-for="(event, index) in eventsList" :key="index" class = "col-lg-6 col-md-6 col-sm-6" style='margin-bottom: 50px; display: inline; height: 250px' >
+          </div>-->
+
+      </div>
+
+      
+        
+    <script src="scripts/scriptVue.js"></script>
+    <script src="scripts/scriptJs.js"></script>
+
+   </body>
+</html>
