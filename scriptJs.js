@@ -1,6 +1,6 @@
 $(document).ready(function () {
-    //vue objects
-    var user= new Vue({
+    //old vue code 
+    var obj = new Vue({
         el: "#app",
         data() {
             return {
@@ -66,17 +66,48 @@ $(document).ready(function () {
     })
     
     
-    
-    
-    
-    
-    
-    //additional java script code
+    //new java script code
+    //TODO: save users array info even after page has reloaded
+    var users = [];
+    var user = new Vue({
+        el: "#users",
+        data() {
+            return{
+                email: '',
+                password: '',
+                reentered: '',
+                address: '',
+                age: undefined,
+                gender: ' ',
+                zipcode: '',
+                height: undefined,
+                weight: undefined,
+                firstname: '',
+                lastname: '',
+            }
+        },
+        methods: {
+            //add functions specific to one user
+        }
+    });
     $('.signup').click(function() {
         var forms = document.getElementsByClassName("signup-form");
         for(let f of forms) {
             f.style.display = "block";
         }
     });
+
+    $('.createaccount').click(function() {
+        if(user.email === '' || user.password === '' || user.zipcode === '' || user.firstname === '' || 
+            user.lastname === '') {
+            alert("Required fields have not been filled out");
+        }
+        else if(user.password != user.reentered) {
+            alert("Passwords do not match");
+        }
+        else {
+            users.push(user);
+        }
+    })
 
 });
