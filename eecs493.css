@@ -1,4 +1,9 @@
-
 .signup-form{
-  display: none;
-}
+    display: none;
+  }
+  #events {
+    display: none;
+  }
+  .dropdown-item.active {
+    background-color:  #4682B4;
+ }
