@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en-US">
    <head>
@@ -12,38 +11,39 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
 
     <link rel="stylesheet" href="eecs493.css">
-      <script src="./scriptVue.js"></script>
+    <script src="./scriptVue.js"></script>
     <script src="./scriptJs.js"></script>
 
    </head>
 
      <body>
 
-     <div id="app">
+     <div id="users">
           <button type="button" class="login">log in</button>
           <button type="button" class="signup">sign up</button>
           <div class="signup-form">
-              <input type="text" placeholder="Email Address" class="input" v-model="email">
-              <input type="text" placeholder="Password" class="input" v-model="password">
-              <input type="text" placeholder="Re-enter Password" class="input">
-              <input type="text" placeholder="First Name" class="input" v-model="firstname">
-              <input type="text" placeholder="Last Name" class="input" v-model="lastname">
+              <input type="text" placeholder="*Email Address" class="input" v-model="email">
+              <input type="text" placeholder="*Password" class="input" v-model="password">
+              <input type="text" placeholder="*Re-enter Password" class="input" v-model="reentered">
+              <input type="text" placeholder="*First Name" class="input" v-model="firstname">
+              <input type="text" placeholder="*Last Name" class="input" v-model="lastname">
               <input type="text" placeholder="Home Address" class="input" v-model="address">
-              <input type="text" placeholder="Zip Code" class="input" v-model="zipcode">
+              <input type="text" placeholder="*Zip Code" class="input" v-model="zipcode">
               <input type="text" placeholder="Age" class="input" v-model="age">
               <input type="text" placeholder="Weight" class="input" v-model="weight">
               <input type="text" placeholder="Height" class="input" v-model="height">
-              <button class="btn" v-on:click="createAccount">Create Account</button>
+              <button type="button" class="createaccount">Create Account</button>
           </div>
 
-          <div class="search-container">
-            <input type="text" placeholder="Search.." name="search">
-            <button type="submit"><i class="fa fa-search"></i></button>
-          </div>
-          <!--<div v-if="numEvents > 0"  v-for="(event, index) in eventsList" :key="index" class = "col-lg-6 col-md-6 col-sm-6" style='margin-bottom: 50px; display: inline; height: 250px' >
-          </div>-->
-
-      </div>      
+      </div> 
+      <div id="app">
+        <div class="search-container">
+          <input type="text" placeholder="Search.." name="search">
+          <button type="submit"><i class="fa fa-search"></i></button>
+        </div>
+        <!--<div v-if="numEvents > 0"  v-for="(event, index) in eventsList" :key="index" class = "col-lg-6 col-md-6 col-sm-6" style='margin-bottom: 50px; display: inline; height: 250px' >
+        </div>-->
+      </div>     
         
   
    </body>
