@@ -30,21 +30,42 @@
               <input type="text" placeholder="Home Address" class="input" v-model="address">
               <input type="text" placeholder="*Zip Code" class="input" v-model="zipcode">
               <input type="text" placeholder="Age" class="input" v-model="age">
-              <input type="text" placeholder="Weight" class="input" v-model="weight">
-              <input type="text" placeholder="Height" class="input" v-model="height">
+              <input type="text" placeholder="Weight (lbs)" class="input" v-model="weight">
+              <input type="text" placeholder="Height (in)" class="input" v-model="height">
               <button type="button" class="createaccount">Create Account</button>
           </div>
 
       </div> 
-      <div id="app">
+      <div id="events">
+        <nav class="navbar navbar-default">
+          <div class="container">
+             <div class="navbar-header">
+                <h3>Fitness Event Search</h3>
+             </div>
+          </div>
+       </nav>
+       <div class = "container">
         <div class="search-container">
+          <h4>Enter the name of the event : </h4>
           <input type="text" placeholder="Search.." name="search">
           <button type="submit"><i class="fa fa-search"></i></button>
         </div>
+        <h4>
+          Events Found: 0
+       </h4>
+       <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Sort list of events by:
+        <span class="caret"></span></button>
+        <ul class="dropdown-menu">
+          <li><a v-bind:class = "[sortDate ? 'dropdown-item active' : 'dropdown-item']" @click="sortArtists(1)" href="#">Date</a></li>
+          <li><a v-bind:class = "[sortDuration ? 'dropdown-item active' : 'dropdown-item']" @click="sortArtists(2)" href="#">Duration</a></li>
+          <li><a v-bind:class = "[sortPrice ? 'dropdown-item active' : 'dropdown-item']" @click="sortArtists(3)">Price</a></li>
+        </ul>
+      </div>
         <!--<div v-if="numEvents > 0"  v-for="(event, index) in eventsList" :key="index" class = "col-lg-6 col-md-6 col-sm-6" style='margin-bottom: 50px; display: inline; height: 250px' >
         </div>-->
-      </div>     
+       </div>
+      </div>
         
-  
    </body>
 </html>
