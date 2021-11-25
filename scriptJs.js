@@ -26,18 +26,21 @@ $(document).ready(function () {
               sortDate: false,
               sortDuration: false,
               sortPrice: false,
+              totalEventsList: [],
             }
           },
           methods: {
               searchEvents:function() {
-                console.log('reached')
                 if(this.search){
-                  return this.eventsList.filter(guide => {
+                  temp = JSON.parse(JSON.stringify(this.totalEventsList));
+                  tempList = temp.filter(guide => {
                     return guide.name.toLowerCase().includes(this.search.toLowerCase())
                       || this.search.toLowerCase().includes(guide.name.toLowerCase())
-                      || guide.type.toLowerCase().includes(this.search.toLowerCase())
-                      || this.search.toLowerCase().includes(guide.type.toLowerCase())
+                      || guide.type.includes(this.search.toLowerCase())
+                      || this.search.toLowerCase().includes(guide.type)
                   })
+                  this.eventsList = tempList
+                  this.numEvents = this.eventsList.length; 
                 }
               },
 
@@ -141,6 +144,7 @@ $(document).ready(function () {
                   this.eventsList.push({name:"Slow Flow", type: ["yoga"], date: new Date(2021, 12, 6, 7, 15),location:"NCRB", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: true, calories: [], duration: 50, signup: "https://recsports.umich.edu/groupx/schedule/"});
                   this.eventsList.push({name:"Strength & Sculpt", type: ["cardio", "hiit", "strength"], date: new Date(2021, 12, 6, 7, 15),location:"IMSB", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: true, calories: [], duration: 50, signup: "https://recsports.umich.edu/groupx/schedule/"});      
                   this.numEvents = this.eventsList.length;
+                  this.totalEventsList = JSON.parse(JSON.stringify(this.eventsList));
           }
       }
     });

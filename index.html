@@ -144,8 +144,8 @@
           <div class = "container">
             <div class="search-container">
               <h4>Enter the name of the event : </h4>
-              <input style="color: black;" type="text" placeholder="Type here to search..." name="search">
-              <button type="submit" v-on:click="searchEvents('search')"><i class="fa fa-search"></i></button>
+              <input style="color: black;" type="text" v-model="search"placeholder="Type here to search...">
+              <button type="submit" v-on:click="searchEvents()"><i class="fa fa-search"></i></button>
             </div>
             <h4>
               Events Found: {{numEvents}}
