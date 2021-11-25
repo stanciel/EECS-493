@@ -195,7 +195,18 @@ $(document).ready(function () {
             }
         },
         methods: {
-            //add functions specific to one user
+            login:function(){
+              one = 0;
+              for(let u in users) {
+                if(u.email === this.email && u.password === this.password) {
+                  one = 1;
+                  break;
+                }
+              }
+              if(one === 0) {
+                alert("Incorrect username and password combination.")
+              }
+            }
         }
     });
     $('.login').click(function() {
@@ -221,5 +232,6 @@ $(document).ready(function () {
         $( "#events" ).toggle();
         //test
     })
+    
 
 });
