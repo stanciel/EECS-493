@@ -30,6 +30,7 @@ $(document).ready(function () {
           },
           methods: {
               searchEvents:function() {
+                console.log('reached')
                 if(this.search){
                   return this.eventsList.filter(guide => {
                     return guide.name.toLowerCase().includes(this.search.toLowerCase())
@@ -139,11 +140,12 @@ $(document).ready(function () {
                   this.eventsList.push({name:"Restorative Flow", type: ["yoga", "stretch"], date: new Date(2021, 12, 6, 7),location:"Virtual(Zoom)", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: true, calories: [], duration: 50, signup: "https://recsports.umich.edu/groupx/schedule/"});
                   this.eventsList.push({name:"Slow Flow", type: ["yoga"], date: new Date(2021, 12, 6, 7, 15),location:"NCRB", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: true, calories: [], duration: 50, signup: "https://recsports.umich.edu/groupx/schedule/"});
                   this.eventsList.push({name:"Strength & Sculpt", type: ["cardio", "hiit", "strength"], date: new Date(2021, 12, 6, 7, 15),location:"IMSB", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: true, calories: [], duration: 50, signup: "https://recsports.umich.edu/groupx/schedule/"});      
-                  numEvents = this.eventsList.length;
+                  this.numEvents = this.eventsList.length;
           }
       }
-    })
+    });
     
+    eventsVue.addEvents();
     
     //new java script code
     //TODO: save users array info even after page has reloaded
