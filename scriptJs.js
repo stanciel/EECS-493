@@ -1,3 +1,17 @@
+function show(elementID) {
+  var element = document.getElementById(elementID);
+  if (!element) {
+      alert("no such element");
+      return;
+  }
+  var pages = document.getElementsByClassName('page');
+  for(var i = 0; i < pages.length; i++) {
+      pages[i].style.display = 'none';
+  }
+  
+  element.style.display = 'block';
+}
+
 $(document).ready(function () {
         //old vue code 
         $('.signin').hide()
@@ -15,17 +29,17 @@ $(document).ready(function () {
             }
           },
           methods: {
-              submit:function() {
-                  alert("submitted")
-                //keyword search
+              searchEvents:function() {
                 if(this.search){
-                  return this.eventsList.filter((item)=>{
-                    return (this.eventsList.toLowerCase().split(' ').every(v => item.name.toLowerCase().includes(v)) || this.eventsList.type.forEach(
-                      type => {type.toLowerCase().split(' ').every(v => type.toLowerCase().includes(v))}))
+                  return this.eventsList.filter(guide => {
+                    return guide.name.toLowerCase().includes(this.search.toLowerCase())
+                      || this.search.toLowerCase().includes(guide.name.toLowerCase())
+                      || guide.type.toLowerCase().includes(this.search.toLowerCase())
+                      || this.search.toLowerCase().includes(guide.type.toLowerCase())
                   })
                 }
               },
-              
+
               //ONLY CALL CALCULATE CALORIES IF USER WEIGHT IS NOT NULL
               calculateCalories: function() { 
                 var MET = [{name: "cycling", num: 6.8}, {name: "walking", num: 4.3}, {name: "running", num: 9.8}, {name: "zumba", num: 7.3}, {name: "kickboxing", num: 7.5},

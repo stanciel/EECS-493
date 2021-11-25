@@ -26,94 +26,92 @@
 
    </head>
 
-     <body>
+    <body>
+      <div class='outer-container'>
+        <img src = "./ActiveInvites Logo.jpg" class='logo'>
+        <div class="page" id="signup">
+          <div class="signup-form">
+            <form>
+            <!--<div id="users">-->
+              <h2>Sign Up</h2>
+              <p>Please fill in this form to create an account!</p>
+              <hr>
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-xs-6"><input type="text" class="form-control" name="first_name" placeholder="First Name" required="required"
+                      v-model="firstname">
+                    </div>
+                    <div class="col-xs-6"><input type="text" class="form-control" name="last_name" placeholder="Last Name" required="required"
+                      v-model="lastname">
+                    </div>
+                  </div>        	
+                </div>
+                <div class="form-group">
+                  <input type="email" class="form-control" name="email" placeholder="Email" required="required" v-model="email">
+                </div>
 
-      <img src = "./ActiveInvites Logo.jpg" class='logo'>
-    <div class="signup">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="address" placeholder="Home Address" required="required" v-model="address">
+                </div>
 
-    <div class="signup-form">
-      <form>
-      
-     <div id="users">
-          <h2>Sign Up</h2>
-        <p>Please fill in this form to create an account!</p>
-        <hr>
-          <div class="form-group">
-            <div class="row">
-              <div class="col-xs-6"><input type="text" class="form-control" name="first_name" placeholder="First Name" required="required"
-                v-model="firstname"></div>
-              <div class="col-xs-6"><input type="text" class="form-control" name="last_name" placeholder="Last Name" required="required"
-                v-model="lastname"></div>
-            </div>        	
-              </div>
-              <div class="form-group">
-                <input type="email" class="form-control" name="email" placeholder="Email" required="required" v-model="email">
-              </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" name="zipcode" placeholder="Zipcode" required="required" v-model="zipcode">
+                </div>
 
-              <div class="form-group">
-                <input type="text" class="form-control" name="address" placeholder="Home Address" required="required" v-model="address">
-              </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" name="age" placeholder="Age" required="required" v-model="age">
+                </div>
 
-              <div class="form-group">
-                <input type="text" class="form-control" name="zipcode" placeholder="Zipcode" required="required" v-model="zipcode">
-              </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" name="weight" placeholder="Weight (lbs)" required="required" v-model="weight">
+                </div>
 
-              <div class="form-group">
-                <input type="text" class="form-control" name="age" placeholder="Age" required="required" v-model="age">
-              </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" name="height" placeholder="Height (inches)" required="required" v-model="height">
+                </div>
 
-              <div class="form-group">
-                <input type="text" class="form-control" name="weight" placeholder="Weight (lbs)" required="required" v-model="weight">
-              </div>
+                <div class="form-group">
+                  <input type="password" class="form-control" name="password" placeholder="Password" required="required" v-model="password">
+                </div>
 
-              <div class="form-group">
-                <input type="text" class="form-control" name="height" placeholder="Height (inches)" required="required" v-model="height">
+                <div class="form-group">
+                  <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password" required="required" v-model="reentered">
+                </div>        
+                <div class="form-group">
+                  <label class="checkbox-inline"><input type="checkbox" required="required"> I accept the Terms of Use and Privacy Policy</label>
+                </div>
+                <div class="form-group">
+                  <button onclick="show('events');" type="submit" class="btn btn-primary btn-lg" class="createaccount">Sign Up</button>
+                </div>
+            </form>
+              <div class="hint-text">
+                Already have an account? 
+                <a onclick="show('signin');" href="#signin" class="login">Login here</a>
               </div>
-
-          <div class="form-group">
-                  <input type="password" class="form-control" name="password" placeholder="Password" required="required"
-                  v-model="password">
-              </div>
-          <div class="form-group">
-                  <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password" required="required"
-                  v-model="reentered">
-              </div>        
-              <div class="form-group">
-            <label class="checkbox-inline"><input type="checkbox" required="required"> I accept the Terms of Use and Privacy Policy</label>
-          </div>
-          <div class="form-group">
-                  <button type="submit" class="btn btn-primary btn-lg" class="createaccount">Sign Up</button>
-              </div>
-          </form>
-        <div class="hint-text" >Already have an account? <a href="#" class="login">Login here</a></div>
-          </div>
-          </div>
+          </div>  
         </div>    
-      </div>    
-
-        <div class="signin">
+        <div class="page" id="signin" style="display:none">
           <div class="signup-form">
             <form>
             
-          <div id="users">
-                <h2>Login</h2>
+            <div id="users">
+              <h2>Login</h2>
               <hr>
+              <div class="form-group">  
                 <div class="form-group">
-                    
-                    </div>
-                    <div class="form-group">
-                      <input type="email" class="form-control" name="email" placeholder="Email" required="required" v-model="email">
-                    </div>
-
-                    <div class="form-group">
-                      <input type="password" class="form-control" name="password" placeholder="Password" required="required"
-                      v-model="password">
-                  </div>
-
-                  <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-lg" class="createaccount">Log in</button>
+                  <input type="email" class="form-control" name="email" placeholder="Email" required="required" v-model="email">
                 </div>
-                </form>
+
+                <div class="form-group">
+                  <input type="password" class="form-control" name="password" placeholder="Password" required="required"
+                      v-model="password">
+                </div>
+
+                <div class="form-group">
+                  <button type="submit" class="btn btn-primary btn-lg" class="createaccount">Log in</button>
+                </div>
+              </div>
+            </form>
                 </div>
               </div>  
             </div>
@@ -136,38 +134,35 @@
             <input type="text" placeholder="Weight (lbs)" class="input" v-model="weight">
             <input type="text" placeholder="Height (in)" class="input" v-model="height">
             <button type="button" class="createaccount">Create Account</button> -->
-
-      </div> 
-      <div id="events">
-        <nav class="navbar navbar-default">
-          <div class="container">
-             <div class="navbar-header">
-                <h3>Fitness Event Search</h3>
-             </div>
+      <div class="page" id="events" style="display:none">
+          <nav class="navbar navbar-default">
+            <div class="container">
+              <div class="navbar-header">
+                  <h3>Fitness Event Search</h3>
+              </div>
+            </div>
+          </nav>
+        <div class = "container">
+          <div class="search-container">
+            <h4>Enter the name of the event : </h4>
+            <input type="text" placeholder="Type here to search..." name="search">
+            <button type="submit" v-on:click="searchEvents('search')"><i class="fa fa-search"></i></button>
           </div>
-       </nav>
-       <div class = "container">
-        <div class="search-container">
-          <h4>Enter the name of the event : </h4>
-          <input type="text" placeholder="Type here to search..." name="search">
-          <button type="submit"><i class="fa fa-search"></i></button>
+          <h4>
+            Events Found: {{numEvents}}
+          </h4>
+          <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Sort list of events by:
+            <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+              <li><a v-bind:class = "[sortDate ? 'dropdown-item active' : 'dropdown-item']" @click="sortArtists(1)" href="#">Date</a></li>
+              <li><a v-bind:class = "[sortDuration ? 'dropdown-item active' : 'dropdown-item']" @click="sortArtists(2)" href="#">Duration</a></li>
+              <li><a v-bind:class = "[sortPrice ? 'dropdown-item active' : 'dropdown-item']" @click="sortArtists(3)">Price</a></li>
+            </ul>
+          </div>
         </div>
-        <h4>
-          Events Found: {{numEvents}}
-       </h4>
-       <div class="dropdown">
-        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Sort list of events by:
-        <span class="caret"></span></button>
-        <ul class="dropdown-menu">
-          <li><a v-bind:class = "[sortDate ? 'dropdown-item active' : 'dropdown-item']" @click="sortArtists(1)" href="#">Date</a></li>
-          <li><a v-bind:class = "[sortDuration ? 'dropdown-item active' : 'dropdown-item']" @click="sortArtists(2)" href="#">Duration</a></li>
-          <li><a v-bind:class = "[sortPrice ? 'dropdown-item active' : 'dropdown-item']" @click="sortArtists(3)">Price</a></li>
-        </ul>
       </div>
-        <!--<div v-if="numEvents > 0"  v-for="(event, index) in eventsList" :key="index" class = "col-lg-6 col-md-6 col-sm-6" style='margin-bottom: 50px; display: inline; height: 250px' >
-        </div>-->
-       </div>
-      </div>
-        
-   </body>
+    <!--</div>-->
+  </div>          
+    </body>
 </html>
