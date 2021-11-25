@@ -126,7 +126,6 @@
             <input type="text" placeholder="*Re-enter Password" class="input" v-model="reentered">
             <input type="text" placeholder="*First Name" class="input" v-model="firstname">
             <input type="text" placeholder="*Last Name" class="input" v-model="lastname">
-
             <input type="text" placeholder="Home Address" class="input" v-model="address">
             <input type="text" placeholder="*Zip Code" class="input" v-model="zipcode">
             <input type="text" placeholder="Age" class="input" v-model="age">
@@ -154,9 +153,9 @@
               <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort list of events by:
               <span class="caret"></span></button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                <li><a v-bind:class = "[sortDate ? 'dropdown-item active' : 'dropdown-item']" @click="sortArtists(1)" href="#1">Date</a></li>
-                <li><a v-bind:class = "[sortDuration ? 'dropdown-item active' : 'dropdown-item']" @click="sortArtists(2)" href="#2">Duration</a></li>
-                <li><a v-bind:class = "[sortPrice ? 'dropdown-item active' : 'dropdown-item']" @click="sortArtists(3)" href="#3">Price</a></li>
+                <li><a v-bind:class = "[sortDate ? 'dropdown-item active' : 'dropdown-item']" @click="sortArtists(1)" href="#">Date</a></li>
+                <li><a v-bind:class = "[sortDuration ? 'dropdown-item active' : 'dropdown-item']" @click="sortArtists(2)" href="#">Duration</a></li>
+                <li><a v-bind:class = "[sortPrice ? 'dropdown-item active' : 'dropdown-item']" @click="sortArtists(3)" href="#">Price</a></li>
               </ul>
             </div>
             <div v-if="eventsList.length > 0"  v-for="(event, index) in eventsList" :key="index" class = "col-lg-6 col-md-6 col-sm-6" style='margin-bottom: 50px; display: inline; height: 250px' >
@@ -166,7 +165,7 @@
               <div v-if="event.type.length > 0">
                 <b>Type:</b> {{event.type.join(', ')}}
               </div>
-              <div v-if="event.date != ''">
+              <div v-if="event.date != null">
                 <b>Date:</b> {{event.date}}
               </div>
               <div v-if="event.location != ''">
@@ -192,6 +191,9 @@
               </div>
               <div v-if="event.duration > 0">
                 <b>Duration:</b> {{event.duration}} minutes
+              </div>
+              <div v-if="event.length > 0">
+                <b>Length:</b> {{event.length}} miles
               </div>
               <div v-if="event.signin !== ''">
                 <b>Sign up:</b> <a :href="event.signup" target="_blank">Link</a>
