@@ -1,5 +1,6 @@
 $(document).ready(function () {
-    //old vue code 
+        //old vue code 
+        $('.signin').hide()
     var eventsVue = new Vue({
         el: "#events",
         data() {
@@ -10,18 +11,10 @@ $(document).ready(function () {
               search: '',
               sortDate: false,
               sortDuration: false,
-              sortPrice: false
+              sortPrice: false,
             }
           },
           methods: {
-              // calculateBMR:function() {
-              //   if (this.gender === "female") {
-              //     this.BMR = 10 * this.weight + 6.25 * this.height - 5 * this.age + 5;
-              //   }
-              //   else {
-              //     this.BMR = 10 * this.weight + 6.25 * this.height - 5 * this.age - 161;
-              //   }
-              // }
               submit:function() {
                   alert("submitted")
                 //keyword search
@@ -32,10 +25,11 @@ $(document).ready(function () {
                   })
                 }
               },
+              
               //ONLY CALL CALCULATE CALORIES IF USER WEIGHT IS NOT NULL
-              calculateCalories: function() {
-                var MET = [{name: "cycling", num: 0}, {name: "walking", num: 0}, {name: "running", num: 0}, {name: "zumba", num: 0}, {name: "kickboxing", num: 0},
-                {name: "hiit", num: 0}, {name: "yoga", num: 0}, {name: "cardio", num: 0}]
+              calculateCalories: function() { 
+                var MET = [{name: "cycling", num: 6.8}, {name: "walking", num: 4.3}, {name: "running", num: 9.8}, {name: "zumba", num: 7.3}, {name: "kickboxing", num: 7.5},
+                {name: "hiit", num: 8}, {name: "yoga", num: 2.5}, {name: "cardio", num: 7.5}, {name: "strength", num: 5}]
                 this.eventsList.forEach(element => {
                   element.type.forEach(typeElement => {
                     //search in calorie array for the type
@@ -109,29 +103,29 @@ $(document).ready(function () {
                   //add more events
                   //new Date(2021, 12, 7, 7, 15)
                   //recurrs mon-Fri
-                  this.eventsList.push({name:"MVMNT Fit Cycling", type: ["cycling"], date: new Date(2021, 12, 8, 7, 15),location:"1300 South University Avenue suite 6 , Ann Arbor MI 48104", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: true, calories: [], duration: 60, signup: "https://clients.mindbodyonline.com/classic/mainclass"});
-                  this.eventsList.push({name:"MVMNT Fit Cycling", type: ["cycling"], date: new Date(2021, 12, 8, 8, 30),location:"1300 South University Avenue suite 6 , Ann Arbor MI 48104", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: true, calories: [], duration: 60, signup: "https://clients.mindbodyonline.com/classic/mainclass"});
-                  this.eventsList.push({name:"MVMNT Fit Cycling", type: ["cycling"], date: new Date(2021, 12, 7, 4),location:"1300 South University Avenue suite 6 , Ann Arbor MI 48104", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: true, calories: [], duration: 60, signup: "https://clients.mindbodyonline.com/classic/mainclass"});
-                  this.eventsList.push({name:"MVMNT Fit Cycling", type: ["cycling"], date: new Date(2021, 12, 7, 5, 15),location:"1300 South University Avenue suite 6 , Ann Arbor MI 48104", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: true, calories: [], duration: 60, signup: "https://clients.mindbodyonline.com/classic/mainclass"});
-                  this.eventsList.push({name:"MVMNT Fit Cycling", type: ["cycling"], date: new Date(2021, 12, 7, 6, 30),location:"1300 South University Avenue suite 6 , Ann Arbor MI 48104", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: true, calories: [], duration: 60, signup: "https://clients.mindbodyonline.com/classic/mainclass"});
+                  this.eventsList.push({name:"MVMNT Fit Cycling", type: ["cycling"], date: new Date(2021, 12, 1, 7, 15),location:"1300 South University Avenue suite 6 , Ann Arbor MI 48104", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: true, calories: [], duration: 60, signup: "https://clients.mindbodyonline.com/classic/mainclass"});
+                  this.eventsList.push({name:"MVMNT Fit Cycling", type: ["cycling"], date: new Date(2021, 12, 1, 8, 30),location:"1300 South University Avenue suite 6 , Ann Arbor MI 48104", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: true, calories: [], duration: 60, signup: "https://clients.mindbodyonline.com/classic/mainclass"});
+                  this.eventsList.push({name:"MVMNT Fit Cycling", type: ["cycling"], date: new Date(2021, 11, 30, 4),location:"1300 South University Avenue suite 6 , Ann Arbor MI 48104", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: true, calories: [], duration: 60, signup: "https://clients.mindbodyonline.com/classic/mainclass"});
+                  this.eventsList.push({name:"MVMNT Fit Cycling", type: ["cycling"], date: new Date(2021, 11, 30, 5, 15),location:"1300 South University Avenue suite 6 , Ann Arbor MI 48104", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: true, calories: [], duration: 60, signup: "https://clients.mindbodyonline.com/classic/mainclass"});
+                  this.eventsList.push({name:"MVMNT Fit Cycling", type: ["cycling"], date: new Date(2021, 11, 30, 6, 30),location:"1300 South University Avenue suite 6 , Ann Arbor MI 48104", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: true, calories: [], duration: 60, signup: "https://clients.mindbodyonline.com/classic/mainclass"});
                 //recurrs Sat-Sun
-                //   this.eventsList.push({name:"MVMNT Fit Cycling", type: ["cycling"], date: "Sat-Sun" ,time:"8:00",location:"1300 South University Avenue suite 6 , Ann Arbor MI 48104", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: true, calories: [], duration: 60, signup: "https://clients.mindbodyonline.com/classic/mainclass"});
-                //   this.eventsList.push({name:"MVMNT Fit Cycling", type: ["cycling"], date: "Sat-Sun" ,time:"9:15",location:"1300 South University Avenue suite 6 , Ann Arbor MI 48104", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: true, calories: [], duration: 60, signup: "https://clients.mindbodyonline.com/classic/mainclass"});
-                //   this.eventsList.push({name:"MVMNT Fit Cycling", type: ["cycling"], date: "Sat-Sun" ,time:"10:30",location:"1300 South University Avenue suite 6 , Ann Arbor MI 48104", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: true, calories: [], duration: 60, signup: "https://clients.mindbodyonline.com/classic/mainclass"});
+                  this.eventsList.push({name:"MVMNT Fit Cycling", type: ["cycling"], date: new Date(2021, 12, 4, 8),location:"1300 South University Avenue suite 6 , Ann Arbor MI 48104", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: true, calories: [], duration: 60, signup: "https://clients.mindbodyonline.com/classic/mainclass"});
+                  this.eventsList.push({name:"MVMNT Fit Cycling", type: ["cycling"], date: new Date(2021, 12, 4, 9, 15),location:"1300 South University Avenue suite 6 , Ann Arbor MI 48104", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: true, calories: [], duration: 60, signup: "https://clients.mindbodyonline.com/classic/mainclass"});
+                  this.eventsList.push({name:"MVMNT Fit Cycling", type: ["cycling"], date: new Date(2021, 12, 4, 10, 30),location:"1300 South University Avenue suite 6 , Ann Arbor MI 48104", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: true, calories: [], duration: 60, signup: "https://clients.mindbodyonline.com/classic/mainclass"});
                 //   //update numEvents
                 //   //IM 
-                //   this.eventsList.push({name:"Metabolic Circuit", type: ["strength", "cardio"], date: "Mon" ,time:"12:00",location:"CCRB", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: true, calories: [], duration: 50, signup: "https://recsports.umich.edu/groupx/schedule/"});
-                //   this.eventsList.push({name:"Cycle", type: ["cycling"], date: "Mon" ,time:"4:30",location:"CCRB", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: true, calories: [], duration: 50, signup: "https://recsports.umich.edu/groupx/schedule/"});
-                //   this.eventsList.push({name:"Tabata", type: ["hiit"], date: "Mon" ,time:"4:45",location:"Virtual(Zoom)", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: true, calories: [], duration: 50, signup: "https://recsports.umich.edu/groupx/schedule/"});
-                //   this.eventsList.push({name:"Cardio Kickboxing", type: ["kickboxing"], date: "Mon" ,time:"5:00",location:"NCRB", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: true, calories: [], duration: 50, signup: "https://recsports.umich.edu/groupx/schedule/"});
-                //   this.eventsList.push({name:"Zumba", type: ["zumba"], date: "Mon" ,time:"5:15",location:"CCRB", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: true, calories: [], duration: 50, signup: "https://recsports.umich.edu/groupx/schedule/"});
-                //   this.eventsList.push({name:"Zumba", type: ["zumba"], date: "Mon" ,time:"5:30",location:"Virtual(Zoom)", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: true, calories: [], duration: 50, signup: "https://recsports.umich.edu/groupx/schedule/"});
-                //   this.eventsList.push({name:"Cycle", type: ["cycling"], date: "Mon" ,time:"5:45",location:"CCRB", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: true, calories: [], duration: 50, signup: "https://recsports.umich.edu/groupx/schedule/"});
-                //   this.eventsList.push({name:"Total Body Strength", type: ["strength"], date: "Mon" ,time:"6:00",location:"NCRB", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: true, calories: [], duration: 50, signup: "https://recsports.umich.edu/groupx/schedule/"});
-                //   this.eventsList.push({name:"Restorative Flow", type: ["yoga", "stretch"], date: "Mon" ,time:"7:00",location:"Virtual(Zoom)", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: true, calories: [], duration: 50, signup: "https://recsports.umich.edu/groupx/schedule/"});
-                //   this.eventsList.push({name:"Slow Flow", type: ["yoga"], date: "Mon" ,time:"7:15",location:"NCRB", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: true, calories: [], duration: 50, signup: "https://recsports.umich.edu/groupx/schedule/"});
-                //   this.eventsList.push({name:"Strength & Sculpt", type: ["cardio", "hiit", "strength"], date: "Mon" ,time:"7:15",location:"IMSB", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: true, calories: [], duration: 50, signup: "https://recsports.umich.edu/groupx/schedule/"});      
-                  //update numEvents
+                  this.eventsList.push({name:"Metabolic Circuit", type: ["strength", "cardio"], date: new Date(2021, 12, 6, 12),location:"CCRB", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: true, calories: [], duration: 50, signup: "https://recsports.umich.edu/groupx/schedule/"});
+                  this.eventsList.push({name:"Cycle", type: ["cycling"], date: new Date(2021, 12, 6, 4, 30),location:"CCRB", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: true, calories: [], duration: 50, signup: "https://recsports.umich.edu/groupx/schedule/"});
+                  this.eventsList.push({name:"Tabata", type: ["hiit"], date: new Date(2021, 12, 6, 4, 45),location:"Virtual(Zoom)", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: true, calories: [], duration: 50, signup: "https://recsports.umich.edu/groupx/schedule/"});
+                  this.eventsList.push({name:"Cardio Kickboxing", type: ["kickboxing"], date: new Date(2021, 12, 6, 5),location:"NCRB", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: true, calories: [], duration: 50, signup: "https://recsports.umich.edu/groupx/schedule/"});
+                  this.eventsList.push({name:"Zumba", type: ["zumba"], date: new Date(2021, 12, 6, 5, 15),location:"CCRB", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: true, calories: [], duration: 50, signup: "https://recsports.umich.edu/groupx/schedule/"});
+                  this.eventsList.push({name:"Zumba", type: ["zumba"], date: new Date(2021, 12, 6, 5, 30),location:"Virtual(Zoom)", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: true, calories: [], duration: 50, signup: "https://recsports.umich.edu/groupx/schedule/"});
+                  this.eventsList.push({name:"Cycle", type: ["cycling"], date: new Date(2021, 12, 6, 5, 45),location:"CCRB", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: true, calories: [], duration: 50, signup: "https://recsports.umich.edu/groupx/schedule/"});
+                  this.eventsList.push({name:"Total Body Strength", type: ["strength"], date: new Date(2021, 12, 6, 6),location:"NCRB", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: true, calories: [], duration: 50, signup: "https://recsports.umich.edu/groupx/schedule/"});
+                  this.eventsList.push({name:"Restorative Flow", type: ["yoga", "stretch"], date: new Date(2021, 12, 6, 7),location:"Virtual(Zoom)", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: true, calories: [], duration: 50, signup: "https://recsports.umich.edu/groupx/schedule/"});
+                  this.eventsList.push({name:"Slow Flow", type: ["yoga"], date: new Date(2021, 12, 6, 7, 15),location:"NCRB", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: true, calories: [], duration: 50, signup: "https://recsports.umich.edu/groupx/schedule/"});
+                  this.eventsList.push({name:"Strength & Sculpt", type: ["cardio", "hiit", "strength"], date: new Date(2021, 12, 6, 7, 15),location:"IMSB", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: true, calories: [], duration: 50, signup: "https://recsports.umich.edu/groupx/schedule/"});      
+                  numEvents = this.eventsList.length;
           }
       }
     })
@@ -161,11 +155,9 @@ $(document).ready(function () {
             //add functions specific to one user
         }
     });
-    $('.signup').click(function() {
-        var forms = document.getElementsByClassName("signup-form");
-        for(let f of forms) {
-            f.style.display = "block";
-        }
+    $('.login').click(function() {
+        $('.signup').hide()
+        $('.signin').show()
     });
 
     $('.createaccount').click(function() {

@@ -10,30 +10,132 @@
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
 
-    <link rel="stylesheet" href="eecs493.css">
-    <script src="./scriptVue.js"></script>
+    
     <script src="./scriptJs.js"></script>
+
+    <!-- bootstap from online -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+
+    <link rel="stylesheet" href="eecs493.css">
 
    </head>
 
      <body>
 
+      <img src = "./ActiveInvites Logo.jpg" class='logo'>
+    <div class="signup">
+
+    <div class="signup-form">
+      <form>
+      
      <div id="users">
-          <button type="button" class="login">log in</button>
-          <button type="button" class="signup">sign up</button>
-          <div class="signup-form">
-              <input type="text" placeholder="*Email Address" class="input" v-model="email">
-              <input type="text" placeholder="*Password" class="input" v-model="password">
-              <input type="text" placeholder="*Re-enter Password" class="input" v-model="reentered">
-              <input type="text" placeholder="*First Name" class="input" v-model="firstname">
-              <input type="text" placeholder="*Last Name" class="input" v-model="lastname">
-              <input type="text" placeholder="Home Address" class="input" v-model="address">
-              <input type="text" placeholder="*Zip Code" class="input" v-model="zipcode">
-              <input type="text" placeholder="Age" class="input" v-model="age">
-              <input type="text" placeholder="Weight (lbs)" class="input" v-model="weight">
-              <input type="text" placeholder="Height (in)" class="input" v-model="height">
-              <button type="button" class="createaccount">Create Account</button>
+          <h2>Sign Up</h2>
+        <p>Please fill in this form to create an account!</p>
+        <hr>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-xs-6"><input type="text" class="form-control" name="first_name" placeholder="First Name" required="required"
+                v-model="firstname"></div>
+              <div class="col-xs-6"><input type="text" class="form-control" name="last_name" placeholder="Last Name" required="required"
+                v-model="lastname"></div>
+            </div>        	
+              </div>
+              <div class="form-group">
+                <input type="email" class="form-control" name="email" placeholder="Email" required="required" v-model="email">
+              </div>
+
+              <div class="form-group">
+                <input type="text" class="form-control" name="address" placeholder="Home Address" required="required" v-model="address">
+              </div>
+
+              <div class="form-group">
+                <input type="text" class="form-control" name="zipcode" placeholder="Zipcode" required="required" v-model="zipcode">
+              </div>
+
+              <div class="form-group">
+                <input type="text" class="form-control" name="age" placeholder="Age" required="required" v-model="age">
+              </div>
+
+              <div class="form-group">
+                <input type="text" class="form-control" name="weight" placeholder="Weight (lbs)" required="required" v-model="weight">
+              </div>
+
+              <div class="form-group">
+                <input type="text" class="form-control" name="height" placeholder="Height (inches)" required="required" v-model="height">
+              </div>
+
+          <div class="form-group">
+                  <input type="password" class="form-control" name="password" placeholder="Password" required="required"
+                  v-model="password">
+              </div>
+          <div class="form-group">
+                  <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password" required="required"
+                  v-model="reentered">
+              </div>        
+              <div class="form-group">
+            <label class="checkbox-inline"><input type="checkbox" required="required"> I accept the Terms of Use and Privacy Policy</label>
           </div>
+          <div class="form-group">
+                  <button type="submit" class="btn btn-primary btn-lg" class="createaccount">Sign Up</button>
+              </div>
+          </form>
+        <div class="hint-text" >Already have an account? <a href="#" class="login">Login here</a></div>
+          </div>
+          </div>
+        </div>    
+      </div>    
+
+        <div class="signin">
+          <div class="signup-form">
+            <form>
+            
+          <div id="users">
+                <h2>Login</h2>
+              <hr>
+                <div class="form-group">
+                    
+                    </div>
+                    <div class="form-group">
+                      <input type="email" class="form-control" name="email" placeholder="Email" required="required" v-model="email">
+                    </div>
+
+                    <div class="form-group">
+                      <input type="password" class="form-control" name="password" placeholder="Password" required="required"
+                      v-model="password">
+                  </div>
+
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-lg" class="createaccount">Log in</button>
+                </div>
+                </form>
+                </div>
+              </div>  
+            </div>
+          </div> 
+        </div>     
+
+
+        <!-- <button type="button" class="login">log in</button>
+        <button type="button" class="signup">sign up</button>
+        <div class="signup-form">
+            <input type="text" placeholder="*Email Address" class="input" v-model="email">
+            <input type="text" placeholder="*Password" class="input" v-model="password">
+            <input type="text" placeholder="*Re-enter Password" class="input" v-model="reentered">
+            <input type="text" placeholder="*First Name" class="input" v-model="firstname">
+            <input type="text" placeholder="*Last Name" class="input" v-model="lastname">
+
+            <input type="text" placeholder="Home Address" class="input" v-model="address">
+            <input type="text" placeholder="*Zip Code" class="input" v-model="zipcode">
+            <input type="text" placeholder="Age" class="input" v-model="age">
+            <input type="text" placeholder="Weight (lbs)" class="input" v-model="weight">
+            <input type="text" placeholder="Height (in)" class="input" v-model="height">
+            <button type="button" class="createaccount">Create Account</button> -->
 
       </div> 
       <div id="events">
@@ -47,11 +149,11 @@
        <div class = "container">
         <div class="search-container">
           <h4>Enter the name of the event : </h4>
-          <input type="text" placeholder="Search.." name="search">
+          <input type="text" placeholder="Type here to search..." name="search">
           <button type="submit"><i class="fa fa-search"></i></button>
         </div>
         <h4>
-          Events Found: 0
+          Events Found: {{numEvents}}
        </h4>
        <div class="dropdown">
         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Sort list of events by:
