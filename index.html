@@ -190,8 +190,11 @@
               <div v-if="event.calories.length > 0">
                 <b>Calories:</b> {{event.calories.join(', ')}}
               </div>
+              <div v-if="event.duration > 0">
+                <b>Duration:</b> {{event.duration}} minutes
+              </div>
               <div v-if="event.signin !== ''">
-                <b>Duration:</b> <a :href="event.signup" target="_blank">Link</a>
+                <b>Sign up:</b> <a :href="event.signup" target="_blank">Link</a>
               </div>
 
             </div>
