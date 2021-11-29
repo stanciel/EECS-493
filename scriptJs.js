@@ -3,20 +3,6 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.5.0/firebase
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-analytics.js";
 import { getDatabase, ref, set, get, child, push, update } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-database.js"
 
-function show(elementID) {
-  var element = document.getElementById(elementID);
-  if (!element) {
-      alert("no such element");
-      return;
-  }
-  var pages = document.getElementsByClassName('page');
-  for(var i = 0; i < pages.length; i++) {
-      pages[i].style.display = 'none';
-  }
-  
-  element.style.display = 'block';
-}
-
 $(document).ready(function () {
   
   //firebase code
@@ -39,6 +25,21 @@ $(document).ready(function () {
   
         //old vue code 
         $('.signin').hide()
+        
+  //Move between pages
+  function show(elementID) {
+    var element = document.getElementById(elementID);
+    if (!element) {
+        alert("no such element");
+        return;
+    }
+    var pages = document.getElementsByClassName('page');
+    for(var i = 0; i < pages.length; i++) {
+        pages[i].style.display = 'none';
+    }
+    
+    element.style.display = 'block';
+  }
     var eventsVue = new Vue({
         el: "#events",
         data() {
@@ -207,6 +208,31 @@ $(document).ready(function () {
                   this.eventsList.push({name:"Fuller Park", type: ["Walking", "Running", "Jogging"], date: null,location:"1519 Fuller Road", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: true, calories: [], duration: null, length: 0, signup: "https://www.a2gov.org/departments/Parks-Recreation/parks-places/PublishingImages/Pages/Fuller/FullerLocationMap.png"});
                   this.numEvents = this.eventsList.length;
                   this.totalEventsList = JSON.parse(JSON.stringify(this.eventsList));
+          },
+          createCalendarEvent: function(event, type){
+            var date = event.date.toLocaleDateString();
+            var time = event.date.toLocaleTimeString();
+            var newDateObj = new Date();
+            newDateObj.setTime(event.getTime() + (event.duration * 60 * 1000));
+            var date2 = newDateObj.date.toLocaleDateString();
+            var time2 = newDateObj.date.toLocaleTimeString();
+            const calEvent = {
+              start: date + ' ' + time,
+              end: date2 + ' ' + time2,
+              duration: [event.duration, "minutes"],
+              title: event.name,
+              description: event.type.join(', '),
+              location: event.location,
+              busy: true,
+              guests: [
+              ]
+            };
+            if(type === "Google"){
+              return calendarLink.google(calEvent); 
+            }
+            else{
+              return calendarLink.ics(calEvent);
+            }
           }
       }
     });
@@ -273,7 +299,7 @@ $(document).ready(function () {
         else if(user.password != user.reentered) {
             alert("Passwords do not match");
         }
-        else {
+       else {
           //firebase code -> adding users to database
           const dbRef = ref(database);
           get(dbRef).then((snapshot) => {
