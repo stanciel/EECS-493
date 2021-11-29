@@ -207,8 +207,32 @@ $(document).ready(function () {
                   this.eventsList.push({name:"Power Flow", type: ["Yoga"], date: new Date(2021, 11, 30, 7),location:"Virtual(Zoom)", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: 1, calories: [], duration: 50, length: 0, signup: "https://recsports.umich.edu/groupx/schedule/"});
                   this.eventsList.push({name:"Slow Flow", type: ["Yoga"], date: new Date(2021, 11, 30, 7, 30),location:"CCRB", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: 1, calories: [], duration: 50, length: 0, signup: "https://recsports.umich.edu/groupx/schedule/"});
                   //Wednesday
+                  this.eventsList.push({name:"Barre Above", type: ["Strength", "Cardio"], date: new Date(2021, 12, 1, 11),location:"Virtual(Zoom)", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: 1, calories: [], duration: 50, length: 0, signup: "https://recsports.umich.edu/groupx/schedule/"});
+                  this.eventsList.push({name:"Metabolic Circuit", type: ["Strength", "Cardio"], date: new Date(2021, 12, 1, 4, 30),location:"CCRB", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: 1, calories: [], duration: 50, length: 0, signup: "https://recsports.umich.edu/groupx/schedule/"});
+                  this.eventsList.push({name:"Cardio Core", type: ["Cardio"], date: new Date(2021, 12, 1, 4, 45),location:"IMSB", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: 1, calories: [], duration: 50, length: 0, signup: "https://recsports.umich.edu/groupx/schedule/"});
+                  this.eventsList.push({name:"Zumba", type: ["Zumba"], date: new Date(2021, 12, 1, 5, 30),location:"Virtual(Zoom)", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: 1, calories: [], duration: 50, length: 0, signup: "https://recsports.umich.edu/groupx/schedule/"});
+                  this.eventsList.push({name:"Zumba", type: ["Zumba"], date: new Date(2021, 12, 1, 5, 45),location:"CCRB", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: 1, calories: [], duration: 50, length: 0, signup: "https://recsports.umich.edu/groupx/schedule/"});
+                  this.eventsList.push({name:"Cycle", type: ["Cycling"], date: new Date(2021, 12, 1, 6),location:"CCRB", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: 1, calories: [], duration: 50, length: 0, signup: "https://recsports.umich.edu/groupx/schedule/"});
+                  this.eventsList.push({name:"Power Flow", type: ["Yoga"], date: new Date(2021, 12, 1, 6),location:"IMSB", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: 1, calories: [], duration: 50, length: 0, signup: "https://recsports.umich.edu/groupx/schedule/"});
+                  this.eventsList.push({name:"Strength & Sculpt", type: ["Cardio", "Hiit", "Strength"], date: new Date(2021, 12, 1, 7, 15),location:"IMSB", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: 1, calories: [], duration: 50, length: 0, signup: "https://recsports.umich.edu/groupx/schedule/"}); 
+                  this.eventsList.push({name:"Slow Flow", type: ["Yoga"], date: new Date(2021, 12, 1, 8, 15),location:"Virtual(Zoom)", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: 1, calories: [], duration: 50, length: 0, signup: "https://recsports.umich.edu/groupx/schedule/"});
+
                   //Thursday
+                  this.eventsList.push({name:"Barre Above", type: ["Strength", "Cardio"], date: new Date(2021, 12, 2, 7, 39),location:"Virtual(Zoom)", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: 1, calories: [], duration: 50, length: 0, signup: "https://recsports.umich.edu/groupx/schedule/"});
+                  this.eventsList.push({name:"Restorative Flow", type: ["Yoga", "Stretch"], date: new Date(2021, 12, 2, 12, 30),location:"CCRB", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: 1, calories: [], duration: 50, length: 0, signup: "https://recsports.umich.edu/groupx/schedule/"});
+                  this.eventsList.push({name:"Tabata", type: ["Hiit"], date: new Date(2021, 12, 2, 4, 45),location:"IMSB", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: 1, calories: [], duration: 50, length: 0, signup: "https://recsports.umich.edu/groupx/schedule/"});
+                  this.eventsList.push({name:"Cycle", type: ["Cycling"], date: new Date(2021, 12, 2, 5),location:"CCRB", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: 1, calories: [], duration: 50, length: 0, signup: "https://recsports.umich.edu/groupx/schedule/"});
+                  this.eventsList.push({name:"Power Flow", type: ["Yoga"], date: new Date(2021, 12, 2, 7, 30),location:"CCRB", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: 1, calories: [], duration: 50, length: 0, signup: "https://recsports.umich.edu/groupx/schedule/"});
+
                   //Friday
+                  this.eventsList.push({name:"Cardio Core", type: ["Cardio"], date: new Date(2021, 12, 3, 11, 45),location:"IMSB", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: 1, calories: [], duration: 50, length: 0, signup: "https://recsports.umich.edu/groupx/schedule/"});
+                  this.eventsList.push({name:"Slow Flow", type: ["Yoga"], date: new Date(2021, 12, 3, 1),location:"IMSB", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: 1, calories: [], duration: 50, length: 0, signup: "https://recsports.umich.edu/groupx/schedule/"});
+                  this.eventsList.push({name:"Total Body Strength", type: ["Strength"], date: new Date(2021, 12, 3, 2),location:"CCRB", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: 1, calories: [], duration: 50, length: 0, signup: "https://recsports.umich.edu/groupx/schedule/"});
+                  this.eventsList.push({name:"Cycle", type: ["Cycling"], date: new Date(2021, 12, 3, 63),location:"CCRB", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: 1, calories: [], duration: 50, length: 0, signup: "https://recsports.umich.edu/groupx/schedule/"});
+                  this.eventsList.push({name:"Barre Above", type: ["Strength", "Cardio"], date: new Date(2021, 12, 3, 4, 45),location:"IMSB", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: 1, calories: [], duration: 50, length: 0, signup: "https://recsports.umich.edu/groupx/schedule/"});
+                  this.eventsList.push({name:"Nike Training Club", type: ["Strength", "Cardio"], date: new Date(2021, 12, 3, 5, 15),location:"Virtual(Zoom)", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: 1, calories: [], duration: 50, length: 0, signup: "https://recsports.umich.edu/groupx/schedule/"});
+                  this.eventsList.push({name:"Restorative Flow", type: ["Yoga", "Stretch"], date: new Date(2021, 12, 3, 5, 45),location:"CCRB", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: 1, calories: [], duration: 50, length: 0, signup: "https://recsports.umich.edu/groupx/schedule/"});
+
                   //Trails/Parks
                   this.eventsList.push({name:"Bird Hills Trail", type: ["Walking", "Running", "Jogging"], date: null,location:"1850 Newport Road", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: 0, calories: [], duration: null, length: 4.16, signup: "https://www.a2gov.org/departments/Parks-Recreation/NAP/Natural-Areas-Recreation/Documents/2020_trail_map.pdf"});
                   this.eventsList.push({name:"Black Pond Woods", type: ["Walking", "Running", "Jogging"], date: null,location:" 1905 Traver Road", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: 0, calories: [], duration: null, length: 1.12, signup: "https://www.a2gov.org/departments/Parks-Recreation/NAP/Natural-Areas-Recreation/Documents/2020_trail_map.pdf"});
@@ -220,28 +244,6 @@ $(document).ready(function () {
                   this.eventsList.push({name:"The Arb", type: ["Walking", "Running", "Jogging"], date: null,location:"1610 Washington Heights", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: 0, calories: [], duration: null, length: 0, signup: "https://mbgna.umich.edu/wp-content/uploads/2018/02/02-Trail-Overview.pdf"});
 
                   this.eventsList.push({name:"Fuller Park", type: ["Walking", "Running", "Jogging"], date: null,location:"1519 Fuller Road", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: 0, calories: [], duration: null, length: 0, signup: "https://www.a2gov.org/departments/Parks-Recreation/parks-places/PublishingImages/Pages/Fuller/FullerLocationMap.png"});
-                  
-                  //loop through eventsList
-                  // this.eventsList.forEach(element => {
-                  //   //Once a week
-                  //   if (element.recurring === 1) {
-                  //     let recurringEvent = 
-                  //   }
-                  //   //Weekdays
-                  //   else if (element.recurring === 5) {
-                      
-                  //   }
-                  //   //Weekend
-                  //   else if (element.recurring === 2) {
-                      
-                  //   }
-                  // })
-                  //.getDay
-                  //if recurrs 1 a week - every week same day
-                  //if 5 times - mon-fri
-                  //if 2 times - sat & sun
-                  //var date = new Date(); date.setDate(date.getDate() + 7);
-                  //if date > __, reset it to right date
 
                   this.numEvents = this.eventsList.length;
                   this.totalEventsList = JSON.parse(JSON.stringify(this.eventsList));
