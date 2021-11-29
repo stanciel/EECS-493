@@ -9,7 +9,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
-    
+
     <script src="./scriptJs.js"></script>
 
     <!-- bootstap from online -->
@@ -111,11 +111,8 @@
                 </div>
               </div>
             </form>
-                </div>
-              </div>  
-            </div>
-          </div> 
-        </div>     
+          </div>
+        </div>    
 
         <!-- <button type="button" class="login">log in</button>
         <button type="button" class="signup">sign up</button>
@@ -177,6 +174,9 @@
               <div v-if="event.price > 0">
                 <b>Price:</b> {{event.price}}
               </div>
+              <div v-else>
+                <b>Price:</b> free
+              </div>
               <div v-if="event.openSpots !== null">
                 <b>Open Spots:</b> {{event.openSpots}}
               </div>
@@ -198,7 +198,6 @@
               <div v-if="event.signin !== ''">
                 <b>Sign up:</b> <a :href="event.signup" target="_blank">Link</a>
               </div>
-
             </div>
           </div>
         </div>
