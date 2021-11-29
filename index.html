@@ -152,9 +152,9 @@
               <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort list of events by:
               <span class="caret"></span></button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                <li><a v-bind:class = "[sortDate ? 'dropdown-item active' : 'dropdown-item']" @click="sortArtists(1)" href="#">Date</a></li>
-                <li><a v-bind:class = "[sortDuration ? 'dropdown-item active' : 'dropdown-item']" @click="sortArtists(2)" href="#">Duration</a></li>
-                <li><a v-bind:class = "[sortPrice ? 'dropdown-item active' : 'dropdown-item']" @click="sortArtists(3)" href="#">Price</a></li>
+                <li><a v-bind:class = "[sortDate ? 'dropdown-item active' : 'dropdown-item']" @click="sortEvents(1)" href="#">Date</a></li>
+                <li><a v-bind:class = "[sortDuration ? 'dropdown-item active' : 'dropdown-item']" @click="sortEvents(2)" href="#">Duration</a></li>
+                <li><a v-bind:class = "[sortPrice ? 'dropdown-item active' : 'dropdown-item']" @click="sortEvents(3)" href="#">Price</a></li>
               </ul>
             </div>
             
@@ -183,9 +183,9 @@
               <div v-if="event.peopleAttending != null">
                 <b>People Attending:</b> {{event.peopleAttending}}
               </div>
-              <div v-if="event.reccuring !== ''">
+<!--               <div v-if="event.reccuring !== ''">
                 <b>reccuring:</b> {{event.reccuring}}
-              </div>
+              </div> -->
               <div v-if="event.calories.length > 0">
                 <b>Calories:</b> {{event.calories.join(', ')}}
               </div>
