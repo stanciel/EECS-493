@@ -10,7 +10,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/calendar-link@1.2.5/dist/index.min.js"></script>
+    <script type="text/javascript" src="https://addevent.com/libs/atc/1.6.1/atc.min.js" async defer></script>
     <script src="./scriptJs.js"></script>
 
     <!-- bootstap from online -->
@@ -81,12 +81,12 @@
                   <label class="checkbox-inline"><input type="checkbox" required="required"> I accept the Terms of Use and Privacy Policy</label>
                 </div>
                 <div class="form-group">
-                  <button onclick="show('events');" type="submit" class="btn btn-primary btn-lg" class="createaccount">Sign Up</button>
+                  <button type="submit" class="btn btn-primary btn-lg" id="createaccount">Sign Up</button>
                 </div>
             </form>
               <div class="hint-text">
                 Already have an account? 
-                <a onclick="show('signin');" href="#signin" class="login">Login here</a>
+                <a href="#signin" id="login">Login here</a> <!--onclick="show('signin');"-->
               </div>
           </div>  
         </div>    
@@ -108,9 +108,10 @@
                 </div>
 
                 <div class="form-group">
-                  <button type="submit" onclick="show('events');" class="btn btn-primary btn-lg" class="createaccount">Log in</button>
+                  <button type="submit" class="btn btn-primary btn-lg" id="createaccount">Log in</button>
                 </div>
               </div>
+            </div>
             </form>
           </div>
         </div>    
@@ -199,9 +200,15 @@
               <div v-if="event.signin !== ''">
                 <b>Sign up:</b> <a :href="event.signup" target="_blank">Link</a>
               </div>
-              <div>
-                <b><a :href="createCalendarEvent(event, Google)" target="_blank">Add to Google Calendar</a></b>
-              </div>
+              <div title="Add to Calendar" class="addeventatc">
+                Add to Calendar
+                <span class="start">{event.date.toLocaleDateString() + event.date.toLocaleTimeString() }</span>
+                <span class="end">12/13/2021 10:00 AM</span>
+                <span class="timezone">America/Los_Angeles</span>
+                <span class="title">{event.name}</span>
+                <span class="description">Description of the event</span>
+                <span class="location">{event.location}</span>
+            </div>
             </div>
           </div>
         </div>

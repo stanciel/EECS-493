@@ -1,10 +1,34 @@
 //for firebase
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js";
+/*import { initializeApp } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-analytics.js";
-import { getDatabase, ref, set, get, child, push, update } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-database.js"
+import { getDatabase, ref, set, get, child, push, update } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-database.js"*/
+//Move between pages
+
 
 $(document).ready(function () {
+  function show(elementID) {
+    var element = document.getElementById(elementID);
+    if (!element) {
+        alert("no such element");
+        return;
+    }
+    var pages = document.getElementsByClassName('page');
+    for(var i = 0; i < pages.length; i++) {
+        pages[i].style.display = 'none';
+    }
+      
+    element.style.display = 'block';
+  }
+
+  $('#createaccount').click(function() {
+    show('events')
+    });
   
+  $('#login').click(function() {
+    show('signin')
+    });
+  
+
   //firebase code
   const firebaseConfig = {
     apiKey: "AIzaSyAJLVuhJLdCzFeadmK_m2RUdy2qZMbdKPk",
@@ -25,21 +49,6 @@ $(document).ready(function () {
   
         //old vue code 
         $('.signin').hide()
-        
-  //Move between pages
-  function show(elementID) {
-    var element = document.getElementById(elementID);
-    if (!element) {
-        alert("no such element");
-        return;
-    }
-    var pages = document.getElementsByClassName('page');
-    for(var i = 0; i < pages.length; i++) {
-        pages[i].style.display = 'none';
-    }
-    
-    element.style.display = 'block';
-  }
     var eventsVue = new Vue({
         el: "#events",
         data() {
@@ -209,31 +218,31 @@ $(document).ready(function () {
                   this.numEvents = this.eventsList.length;
                   this.totalEventsList = JSON.parse(JSON.stringify(this.eventsList));
           },
-          createCalendarEvent: function(event, type){
+          /*createCalendarEvent: function(event, type){
             var date = event.date.toLocaleDateString();
             var time = event.date.toLocaleTimeString();
             var newDateObj = new Date();
-            newDateObj.setTime(event.getTime() + (event.duration * 60 * 1000));
-            var date2 = newDateObj.date.toLocaleDateString();
-            var time2 = newDateObj.date.toLocaleTimeString();
+            newDateObj.setTime(event.date.getTime() + event.duration);
+            var date2 = newDateObj.toLocaleDateString();
+            var time2 = newDateObj.toLocaleTimeString();
             const calEvent = {
               start: date + ' ' + time,
               end: date2 + ' ' + time2,
               duration: [event.duration, "minutes"],
-              title: event.name,
-              description: event.type.join(', '),
+              text: event.name,
+              details: event.type.join(', '),
               location: event.location,
               busy: true,
               guests: [
               ]
             };
             if(type === "Google"){
-              return calendarLink.google(calEvent); 
+              return 'http://www.google.com/calendar/event?action=TEMPLATE&text=' + calEven.text + '&dates=' + calEven.start + '/' + calEven.end + '&details=' + calEven.details + '&location=' + calEven.location;
             }
             else{
               return calendarLink.ics(calEvent);
             }
-          }
+          }*/
       }
     });
     
@@ -299,7 +308,7 @@ $(document).ready(function () {
         else if(user.password != user.reentered) {
             alert("Passwords do not match");
         }
-       else {
+       /*else {
           //firebase code -> adding users to database
           const dbRef = ref(database);
           get(dbRef).then((snapshot) => {
@@ -318,7 +327,7 @@ $(document).ready(function () {
             //UNCOMMENT WHEN DONE CODING
             // $( "#users" ).toggle();
             // $( "#events" ).toggle();
-        }
+        }*/
         $( "#users" ).toggle();
         $( "#events" ).toggle();
         //test
