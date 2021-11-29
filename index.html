@@ -202,13 +202,13 @@
               </div>
               <div title="Add to Calendar" class="addeventatc">
                 Add to Calendar
-                <span class="start">{event.date.toLocaleDateString() + event.date.toLocaleTimeString() }</span>
-                <span class="end">12/13/2021 10:00 AM</span>
-                <span class="timezone">America/Los_Angeles</span>
-                <span class="title">{event.name}</span>
+                <span class="start">{{event.date.toLocaleDateString() +' '+ event.date.toLocaleTimeString() }}</span>
+                <span class="end">{{event.date.toLocaleDateString() + ' ' +(event.date.getTime() + event.duration)}}</span>
+                <span class="timezone">America/Detroit</span>
+                <span class="title">{{event.name}}</span>
                 <span class="description">Description of the event</span>
-                <span class="location">{event.location}</span>
-            </div>
+                <span class="location">{{event.location}}</span>
+              </div>
             </div>
           </div>
         </div>

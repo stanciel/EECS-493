@@ -20,17 +20,13 @@ $(document).ready(function () {
     element.style.display = 'block';
   }
 
-  $('#createaccount').click(function() {
-    show('events')
-    });
+  $('#createaccount').click(function() {show('events')});
   
-  $('#login').click(function() {
-    show('signin')
-    });
+  $('#login').click(function() {show('signin')});
   
 
   //firebase code
-  const firebaseConfig = {
+  /*const firebaseConfig = {
     apiKey: "AIzaSyAJLVuhJLdCzFeadmK_m2RUdy2qZMbdKPk",
     authDomain: "eecs493final-3143e.firebaseapp.com",
     projectId: "eecs493final-3143e",
@@ -44,7 +40,7 @@ $(document).ready(function () {
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
   const db = getDatabase(app);
-  console.log(db);
+  console.log(db);*/
   
   
         //old vue code 
