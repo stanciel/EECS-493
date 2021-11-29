@@ -131,6 +131,7 @@
             <input type="text" placeholder="Height (in)" class="input" v-model="height">
             <button type="button" class="createaccount">Create Account</button> -->
         <div class="page" id="events" style="display:none">
+          <button id= "viewProfile">View Profile</button>
             <nav class="navbar navbar-default">
               <div class="container">
                 <div class="navbar-header">
@@ -197,10 +198,17 @@
               <div v-if="event.length > 0">
                 <b>Length:</b> {{event.length}} miles
               </div>
+              <!-- <div v-if="calories">
+                <b>Calories Burned:</b>
+                <li v-for="item in calories">
+                  {{calories.name}}: {{calories.num}}
+                </li>
+              </div> -->
               <div v-if="event.signin !== ''">
                 <b>Sign up:</b> <a :href="event.signup" target="_blank">Link</a>
               </div>
-              <div title="Add to Calendar" class="addeventatc">
+              <button type="submit" v-on:click="saveEvent(index)">Save Event</button>
+              <!-- <div title="Add to Calendar" class="addeventatc">
                 Add to Calendar
                 <span class="start">{{event.date.toLocaleDateString() +' '+ event.date.toLocaleTimeString() }}</span>
                 <span class="end">{{event.date.toLocaleDateString() + ' ' +(event.date.getTime() + event.duration)}}</span>
@@ -208,9 +216,14 @@
                 <span class="title">{{event.name}}</span>
                 <span class="description">Description of the event</span>
                 <span class="location">{{event.location}}</span>
-              </div>
+              </div> -->
             </div>
           </div>
+        </div>
+        <div class="page" id="profile" style="display:none">
+          <h1> User Profile </h1>
+          <h2> Name </h2>
+          Events Saved: 
         </div>
       </div>          
     </body>
