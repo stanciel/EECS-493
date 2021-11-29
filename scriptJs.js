@@ -34,11 +34,26 @@ $(document).ready(function () {
                 if(this.search){
                   temp = JSON.parse(JSON.stringify(this.totalEventsList));
                   tempList = temp.filter(guide => {
+                    const types = guide.type.map(name => name.toLowerCase());
+                    inTypes = false
+                    typeWithin = false
+                    types.forEach(type => {
+                      if(type.includes(this.search.toLowerCase()) === true){
+                        inTypes = true
+                      }
+                      if(this.search.toLowerCase().includes(type) === true){
+                        typeWithin = true
+                      }
+                    })
+
                     return guide.name.toLowerCase().includes(this.search.toLowerCase())
                       || this.search.toLowerCase().includes(guide.name.toLowerCase())
-                      || guide.type.includes(this.search.toLowerCase())
-                      || this.search.toLowerCase().includes(guide.type)
+                      || types.includes(this.search.toLowerCase())
+                      || inTypes === true
+                      || typeWithin === true
+                      || this.search.includes(guide.duration)
                   })
+                  
                   this.eventsList = tempList
                   this.numEvents = this.eventsList.length; 
                 }
@@ -156,16 +171,16 @@ $(document).ready(function () {
                   this.eventsList.push({name:"Slow Flow", type: ["Yoga"], date: new Date(2021, 11, 30, 7, 30),location:"CCRB", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: true, calories: [], duration: 50, length: 0, signup: "https://recsports.umich.edu/groupx/schedule/"});
 
                   //Trails/Parks
-                  this.eventsList.push({name:"Bird Hills Trail", type: ["Walking, Running, Jogging"], date: null,location:"1850 Newport Road", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: true, calories: [], duration: null, length: 4.16, signup: "https://www.a2gov.org/departments/Parks-Recreation/NAP/Natural-Areas-Recreation/Documents/2020_trail_map.pdf"});
-                  this.eventsList.push({name:"Black Pond Woods", type: ["Walking, Running, Jogging"], date: null,location:" 1905 Traver Road", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: true, calories: [], duration: null, length: 1.12, signup: "https://www.a2gov.org/departments/Parks-Recreation/NAP/Natural-Areas-Recreation/Documents/2020_trail_map.pdf"});
-                  this.eventsList.push({name:"Mary Beth Doyle", type: ["Walking, Running, Jogging"], date: null,location:"3500 Birch Hollow Drive", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: true, calories: [], duration: null, length: 1.24, signup: "https://www.a2gov.org/departments/Parks-Recreation/NAP/Natural-Areas-Recreation/Documents/2020_trail_map.pdf"});
-                  this.eventsList.push({name:"Furstenberg", type: ["Walking, Running, Jogging"], date: null,location:"2626 Fuller Road", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: true, calories: [], duration: null, length: 1.74, signup: "https://www.a2gov.org/departments/Parks-Recreation/NAP/Natural-Areas-Recreation/Documents/2020_trail_map.pdf"});
-                  this.eventsList.push({name:"Marshall", type: ["Walking, Running, Jogging"], date: null,location:"Corner of Plymouth and Dixboro Roads", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: true, calories: [], duration: null, length: 3.26, signup: "https://www.a2gov.org/departments/Parks-Recreation/NAP/Natural-Areas-Recreation/Documents/2020_trail_map.pdf"});
-                  this.eventsList.push({name:"Cedar Bend", type: ["Walking, Running, Jogging"], date: null,location:"1495 Cedar Bend Road", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: true, calories: [], duration: null, length: 1.21, signup: "https://www.a2gov.org/departments/Parks-Recreation/NAP/Natural-Areas-Recreation/Documents/2020_trail_map.pdf"});
+                  this.eventsList.push({name:"Bird Hills Trail", type: ["Walking", "Running", "Jogging"], date: null,location:"1850 Newport Road", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: true, calories: [], duration: null, length: 4.16, signup: "https://www.a2gov.org/departments/Parks-Recreation/NAP/Natural-Areas-Recreation/Documents/2020_trail_map.pdf"});
+                  this.eventsList.push({name:"Black Pond Woods", type: ["Walking", "Running", "Jogging"], date: null,location:" 1905 Traver Road", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: true, calories: [], duration: null, length: 1.12, signup: "https://www.a2gov.org/departments/Parks-Recreation/NAP/Natural-Areas-Recreation/Documents/2020_trail_map.pdf"});
+                  this.eventsList.push({name:"Mary Beth Doyle", type: ["Walking", "Running", "Jogging"], date: null,location:"3500 Birch Hollow Drive", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: true, calories: [], duration: null, length: 1.24, signup: "https://www.a2gov.org/departments/Parks-Recreation/NAP/Natural-Areas-Recreation/Documents/2020_trail_map.pdf"});
+                  this.eventsList.push({name:"Furstenberg", type: ["Walking", "Running", "Jogging"], date: null,location:"2626 Fuller Road", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: true, calories: [], duration: null, length: 1.74, signup: "https://www.a2gov.org/departments/Parks-Recreation/NAP/Natural-Areas-Recreation/Documents/2020_trail_map.pdf"});
+                  this.eventsList.push({name:"Marshall", type: ["Walking", "Running", "Jogging"], date: null,location:"Corner of Plymouth and Dixboro Roads", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: true, calories: [], duration: null, length: 3.26, signup: "https://www.a2gov.org/departments/Parks-Recreation/NAP/Natural-Areas-Recreation/Documents/2020_trail_map.pdf"});
+                  this.eventsList.push({name:"Cedar Bend", type: ["Walking", "Running", "Jogging"], date: null,location:"1495 Cedar Bend Road", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: true, calories: [], duration: null, length: 1.21, signup: "https://www.a2gov.org/departments/Parks-Recreation/NAP/Natural-Areas-Recreation/Documents/2020_trail_map.pdf"});
 
-                  this.eventsList.push({name:"The Arb", type: ["Walking, Running, Jogging"], date: null,location:"1610 Washington Heights", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: true, calories: [], duration: null, length: 0, signup: "https://mbgna.umich.edu/wp-content/uploads/2018/02/02-Trail-Overview.pdf"});
+                  this.eventsList.push({name:"The Arb", type: ["Walking", "Running", "Jogging"], date: null,location:"1610 Washington Heights", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: true, calories: [], duration: null, length: 0, signup: "https://mbgna.umich.edu/wp-content/uploads/2018/02/02-Trail-Overview.pdf"});
 
-                  this.eventsList.push({name:"Fuller Park", type: ["Walking, Running, Jogging"], date: null,location:"1519 Fuller Road", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: true, calories: [], duration: null, length: 0, signup: "https://www.a2gov.org/departments/Parks-Recreation/parks-places/PublishingImages/Pages/Fuller/FullerLocationMap.png"});
+                  this.eventsList.push({name:"Fuller Park", type: ["Walking", "Running", "Jogging"], date: null,location:"1519 Fuller Road", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: true, calories: [], duration: null, length: 0, signup: "https://www.a2gov.org/departments/Parks-Recreation/parks-places/PublishingImages/Pages/Fuller/FullerLocationMap.png"});
                   this.numEvents = this.eventsList.length;
                   this.totalEventsList = JSON.parse(JSON.stringify(this.eventsList));
           }
@@ -233,5 +248,4 @@ $(document).ready(function () {
         //test
     })
     
-
 });
