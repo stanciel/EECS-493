@@ -1,3 +1,8 @@
+//for firebase
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-analytics.js";
+import { getDatabase, ref, set, get, child, push, update } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-database.js"
+
 function show(elementID) {
   var element = document.getElementById(elementID);
   if (!element) {
@@ -13,6 +18,25 @@ function show(elementID) {
 }
 
 $(document).ready(function () {
+  
+  //firebase code
+  const firebaseConfig = {
+    apiKey: "AIzaSyAJLVuhJLdCzFeadmK_m2RUdy2qZMbdKPk",
+    authDomain: "eecs493final-3143e.firebaseapp.com",
+    projectId: "eecs493final-3143e",
+    storageBucket: "eecs493final-3143e.appspot.com",
+    messagingSenderId: "469444665579",
+    appId: "1:469444665579:web:7acc5a04f970c522cb1eae",
+    measurementId: "G-B7BPCM6TD2"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+  const db = getDatabase(app);
+  console.log(db);
+  
+  
         //old vue code 
         $('.signin').hide()
     var eventsVue = new Vue({
@@ -211,7 +235,19 @@ $(document).ready(function () {
         },
         methods: {
             login:function(){
+              //using firebase
               one = 0;
+              for(let u in snapshot.val()["array"]) {
+                if(u.email === this.email && u.password === this.password) {
+                  one = 1;
+                  break;
+                }
+              }
+              if(one === 0) {
+                alert("Incorrect username and password combination.");
+              }
+              
+              /*one = 0;
               for(let u in users) {
                 if(u.email === this.email && u.password === this.password) {
                   one = 1;
@@ -220,7 +256,7 @@ $(document).ready(function () {
               }
               if(one === 0) {
                 alert("Incorrect username and password combination.")
-              }
+              }*/
             }
         }
     });
@@ -238,7 +274,21 @@ $(document).ready(function () {
             alert("Passwords do not match");
         }
         else {
-            users.push(user);
+          //firebase code -> adding users to database
+          const dbRef = ref(database);
+          get(dbRef).then((snapshot) => {
+            if(snapshot.exists()) {
+                var current = snapshot.val()["array"];
+                var newArray = current.push(user);
+                set(ref(db, “array”), newArray);
+            }
+            else {
+              //adding first user
+                var newArray = [user];
+                set(ref(db, “array”), newArray);
+            }
+          }
+            //users.push(user);
             //UNCOMMENT WHEN DONE CODING
             // $( "#users" ).toggle();
             // $( "#events" ).toggle();
