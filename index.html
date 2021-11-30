@@ -67,7 +67,7 @@
                 </div>
 
                 <div class="form-group">
-                  <input type="text" class="form-control" name="height" placeholder="Height (inches)" required="required" v-model="newUser.height">
+                  <input type="text" class="form-control" name="height" placeholder="Height (cm)" required="required" v-model="newUser.height">
                 </div>
 
                 <div class="form-group">
@@ -125,9 +125,9 @@
             </nav>
           <div class = "container">
             <div class="search-container">
-              <h4>Enter the name of the event : </h4>
+              <h4>Enter Event Name or Duration: </h4>
               <input style="color: black;" type="text" v-model="search" placeholder="Type here to search...">
-              <button type="submit" v-on:click="searchEvents()"><i class="fa fa-search"></i></button>
+              <button type="submit" v-on:click="searchEvents()" ><i class="fa fa-search"></i></button>
               <button id= "viewProfile" onclick="showPage('profile');" style="color:#0275d8;">View Profile</button>
             </div>
             <h4>
