@@ -30,10 +30,9 @@
     <body>
       <div class='outer-container'>
         <img src = "./ActiveInvites Logo.jpg" class='logo'>
-        <div id="signup">
+        <div class="page" id="signup">
           <div class="signup-form">
             <form>
-            <!--<div id="users">-->
               <h2>Sign Up</h2>
               <p>Please fill in this form to create an account!</p>
               <hr>
@@ -79,13 +78,13 @@
                   <label class="checkbox-inline"><input type="checkbox" required="required"> I accept the Terms of Use and Privacy Policy</label>
                 </div>
                 <div class="form-group">
-                  <button type="submit" class="btn btn-primary btn-lg" id="createaccount">Sign Up</button>
+                  <button type="submit" class="btn btn-primary btn-lg" id="createaccount" onclick="showPage('events');">Sign Up</button>
                 </div>
             </form>
               <div class="hint-text">
                 Already have an account? 
                 <!-- ADD THIS -->
-                <a href="#signin" id="login">Login here</a> <!--onclick="show('signin');"-->
+                <a href="#signin" id="login" onclick="showPage('signin');" >Login here</a> <!--onclick="show('signin');"-->
               </div>
           </div>  
         </div>    
@@ -107,7 +106,7 @@
                 </div>
 
                 <div class="form-group">
-                  <button type="submit" class="btn btn-primary btn-lg" id="createLogIn">Log in</button>
+                  <button type="submit" class="btn btn-primary btn-lg" id="createLogIn" onclick="showPage('events');">Log in</button>
                 </div>
               </div>
             </div>
@@ -116,7 +115,7 @@
         </div>    
 
         <div class="page" id="events" style="display:none">
-          <button id= "viewProfile">View Profile</button>
+          
             <nav class="navbar navbar-default">
               <div class="container">
                 <div class="navbar-header">
@@ -127,8 +126,9 @@
           <div class = "container">
             <div class="search-container">
               <h4>Enter the name of the event : </h4>
-              <input style="color: black;" type="text" v-model="search"placeholder="Type here to search...">
+              <input style="color: black;" type="text" v-model="search" placeholder="Type here to search...">
               <button type="submit" v-on:click="searchEvents()"><i class="fa fa-search"></i></button>
+              <button id= "viewProfile" onclick="showPage('profile');" style="color:#0275d8;">View Profile</button>
             </div>
             <h4>
               Events Found: {{numEvents}}
@@ -141,7 +141,7 @@
                 <li><a v-bind:class = "[sortDuration ? 'dropdown-item active' : 'dropdown-item']" @click="sortEvents(2)" href="#">Duration</a></li>
                 <li><a v-bind:class = "[sortPrice ? 'dropdown-item active' : 'dropdown-item']" @click="sortEvents(3)" href="#">Price</a></li>
               </ul>
-              <button id= "createEventButton">Create Event</button>
+              <button class="btn btn-default" style="color:#0275d8;" id="createEventButton" onclick="showPage('createNewEvent');">Create Event</button>
             </div>
             
             <div v-if="eventsList.length > 0"  v-for="(event, index) in eventsList" :key="index" class = "col-lg-6 col-md-6 col-sm-6" style='margin-bottom: 50px; display: inline; height: 250px' >
@@ -190,7 +190,7 @@
               <div v-if="event.length > 0">
                 <b>Length:</b> {{event.length}} miles
               </div>
-              <div v-if="event.calories">
+              <div v-if="event.calories.length > 0">
                 <b>Calories Burned:</b>
                 <div v-for="(item, index) in event.calories">
                   {{event.type[index]}}: {{event.calories[index]}}
@@ -202,19 +202,8 @@
               <div v-if="event.date == null">
                 <b>Park/Trail Map:</b> <a :href="event.signup" target="_blank">Link</a>
               </div>
-              <button type="submit" v-on:click="saveEvent(index)">Save Event</button>
-              <!--ADD THIS-->
-              <a v-on:click="createCalendarEvent(event)" target="_blank"> Add to Google Calendar</a>
-<!-- 
-              <div title="Add to Calendar" class="addeventatc">
-                Add to Calendar
-                <span class="start">{{event.date}}</span>
-                <span class="end">{{event.date}}</span>
-                <span class="timezone">America/Detroit</span>
-                <span class="title">{{event.name}}</span>
-                <span class="description">Description of the event</span>
-                <span class="location">{{event.location}}</span>
-              </div> -->
+              <button class="btn btn-default" style="color:#0275d8;" type="submit" v-on:click="saveEvent(index)">Save Event</button>
+              <a v-on:click="createCalendarEvent(event)" target="_blank"> <button class="btn btn-default" style="color:#0275d8;">Add to Google Calendar</button></a>
             </div>
           </div>
         </div>
@@ -227,8 +216,9 @@
           <h2> Height: {{user.users[length(user.users)-1].height}}</h2>
           <h2> Age: {{user.users[length(user.users)-1].age}}</h2>
           <h2> Gender: {{user.users[length(user.users)-1].gender}}</h2>
-          Events Saved: 
-          <div v-for="(event, index) in newUser.signedUpEvents" :key="index" class = "col-lg-6 col-md-6 col-sm-6" style='margin-bottom: 50px; display: inline; height: 250px' >
+          <h2> Events Saved: </h2>
+          <div v-if="newUser.signedUpEvents.length > 0 ">
+            <div v-for="(event, index) in newUser.signedUpEvents" :key="index" class = "col-lg-6 col-md-6 col-sm-6" style='margin-bottom: 50px; display: inline; height: 250px' >
               <div v-if="event.name != ''">
                 <b>Name:</b> {{event.name}}
               </div>
@@ -281,14 +271,15 @@
                 <b>Park/Trail Map:</b> <a :href="event.signup" target="_blank">Link</a>
               </div>
               <button><a :href="createEvent(event)" target="_blank">Add to Calendar</a></button>
+              <button onclick="showPage('events');" style="color:#0275d8;"> Back to Event Search</button>
+            </div>
           </div>
           <div v-else>
             No events saved!
           </div>
-          
-          
         </div>
-        <div class="page" id="createEvent" style="display: none;">
+        <div class="page" id="createNewEvent" style="display: none;">
+          <div class="signup-form">
           <form>
               <h2>Create Event</h2>
               <p>Please fill in this form to create a new event!</p>
@@ -338,11 +329,11 @@
                   <input type="text" class="form-control" name="signup" placeholder="Signup Link" v-model="newEvent.signup">
                 </div>         
                 <div class="form-group">
-                  <button type="submit" class="btn btn-primary btn-lg" id="eventCreate" v-on:click="createEvent()">Submit</button>
+                  <button type="submit" class="btn btn-primary btn-lg" id="eventCreate" v-on:click="createEvent()" onclick="showPage('events');">Submit</button>
                 </div>
             </form>
+          </div>
         </div>
-
       </div>          
     </body>
 </html>

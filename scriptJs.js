@@ -5,24 +5,23 @@ import { getDatabase, ref, set, get, child, push, update } from "https://www.gst
 //Move between pages
 
 
+function showPage(elementID) {
+  var element = document.getElementById(elementID);
+  if (!element) {
+      alert("no such element");
+      return;
+  }
+  var pages = document.getElementsByClassName('page');
+  for(var i = 0; i < pages.length; i++) {
+      pages[i].style.display = 'none';
+  }
+    
+  element.style.display = 'block';
+}
+
 $(document).ready(function () {
   //ADD THIS
   $('.signin').hide()
-
-  function show(elementID) {
-    var element = document.getElementById(elementID);
-    if (!element) {
-        alert("no such element");
-        return;
-    }
-    var pages = document.getElementsByClassName('page');
-    for(var i = 0; i < pages.length; i++) {
-        pages[i].style.display = 'none';
-    }
-      
-    element.style.display = 'block';
-  }
-
   // $('#createaccount').click(function() {show('events')});
   // $('#createEvent').click(function() {show('events')});
   
@@ -32,7 +31,7 @@ $(document).ready(function () {
   //   $( "#events" ).toggle();
   //   $( "#signup" ).toggle();
   // });
-
+/*
   $("body").on("click", "#viewProfile", function() {
     $( "#profile" ).toggle();
     $( "#events" ).toggle();
@@ -40,7 +39,7 @@ $(document).ready(function () {
   $("body").on("click", "#createEventButton", function() {
     $( "#createEvent").toggle();
     $( "#events" ).toggle();
-  });
+  });*/
 
 //   $('.login').click(function() {
 //     $('.signup').hide()
@@ -392,7 +391,7 @@ document.getElementById("eventDate").setAttribute("min", today);
             }
         },
         methods: {
-          login:function(){
+          /*login:function(){
             //using firebase
             one = 0;
             for(let u in snapshot.val()["array"]) {
@@ -405,7 +404,7 @@ document.getElementById("eventDate").setAttribute("min", today);
               alert("Incorrect username and password combination.");
             }
             
-          },
+          },*/
           //ADD THIS
           signupParse:function(){
                 if(this.email === '' || this.password === '' || this.zipcode === '' || this.firstname === '' || 
@@ -417,11 +416,8 @@ document.getElementById("eventDate").setAttribute("min", today);
             else if(this.password != this.reentered) {
                 alert("Passwords do not match")
             }
-            
-              $('#signup').hide()
+              
               console.log("signup has been hidden")
-              $('#events').show()
-              console.log("wow we hid it")
           }
             // login:function(){
             //   //using firebase
@@ -455,8 +451,7 @@ document.getElementById("eventDate").setAttribute("min", today);
 
     $('#createaccount').click(function() {
       eventsVue.calculateCalories();
-      $( "#signup" ).toggle();
-      $( "#events" ).toggle();
+      users.signupParse();
       // if(user.email === '' || user.password === '' || user.zipcode === '' || user.firstname === '' || 
       //     user.lastname === '') {
       //     alert("Required fields have not been filled out");
