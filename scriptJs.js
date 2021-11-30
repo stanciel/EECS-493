@@ -4,8 +4,11 @@ import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-
 import { getDatabase, ref, set, get, child, push, update } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-database.js"*/
 //Move between pages
 
+Vue.use(AddToCalendar);
 
 $(document).ready(function () {
+
+
   function show(elementID) {
     var element = document.getElementById(elementID);
     if (!element) {

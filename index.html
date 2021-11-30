@@ -10,7 +10,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
-    <script type="text/javascript" src="https://addevent.com/libs/atc/1.6.1/atc.min.js" async defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.10/vue.min.js"></script>
+    <script src="./vue-add-to-calendar.common.js"></script>
     <script src="./scriptJs.js"></script>
 
     <!-- bootstap from online -->
@@ -205,15 +206,26 @@
                 <b>Park/Trail Map:</b> <a :href="event.signup" target="_blank">Link</a>
               </div>
               <button type="submit" v-on:click="saveEvent(index)">Save Event</button>
-              <div title="Add to Calendar" class="addeventatc">
-                Add to Calendar
-                <span class="start">{{event.date}}</span>
-                <span class="end">{{event.date}}</span>
-                <span class="timezone">America/Detroit</span>
-                <span class="title">{{event.name}}</span>
-                <span class="description">Description of the event</span>
-                <span class="location">{{event.location}}</span>
-            </div>
+              <!--
+              <add-to-calendar title="VueConf" 
+                 location= event.location
+                 :start="event.date"
+                 :end="event.date.setMinutes(event.date.getMinutes() + event.duration );"
+                 details="The first Official Vue.js Conference in the world!" 
+                 inline-template>
+                  <div>
+                
+                  <google-calendar id="google-calendar">
+                    <i class="fa fa-google"></i> Add to Google calendar
+                  </google-calendar>
+                  
+                  <microsoft-calendar id="microsoft-calendar">
+                    <i class="fa fa-windows"></i> Add to Microsoft live calendar
+                  </microsoft-calendar>
+                  
+                </div>
+              </add-to-calendar>
+              -->
           </div>
         </div>
         <div class="page" id="profile" style="display:none">
