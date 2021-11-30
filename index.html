@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-US">
    <head>
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
       
@@ -11,13 +10,10 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+    <script type="text/javascript" src="https://addevent.com/libs/atc/1.6.1/atc.min.js" async defer></script>
+    <script src="./scriptJs.js"></script>
 
-    <!--Calendar helper-->
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.10/vue.min.js"></script>-->
-    <!-- <script type="module" src="./vue-add-to-calendar.common.js"></script> -->
-
-    <!-- bootstrap from online -->
-     
+    <!-- bootstap from online -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,22 +23,14 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-    <!-- firebase -->
-    <!-- <script src = "https://cdn.firebase.com/js/client/2.4.2/firebase.js" type="module"></script>
-    
-    <script type="module" src= "https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js"></script>
-    <script type="module" src="https://www.gstatic.com/firebasejs/9.5.0/firebase-analytics.js"></script>
-    <script type="module" src="https://www.gstatic.com/firebasejs/9.5.0/firebase-database.js"></script> -->
-    
     <link rel="stylesheet" href="eecs493.css">
 
-    <script type="text/javascript" src="scriptJs.js"></script>
-    
    </head>
 
     <body>
+      <div class='outer-container'>
         <img src = "./ActiveInvites Logo.jpg" class='logo'>
-        <div class="page" id="signup">
+        <div id="signup">
           <div class="signup-form">
             <form>
             <!--<div id="users">-->
@@ -52,10 +40,10 @@
                 <div class="form-group">
                   <div class="row">
                     <div class="col-xs-6"><input type="text" class="form-control" name="first_name" placeholder="First Name" required="required"
-                      v-model="firstname">
+                      v-model="newUser.firstname">
                     </div>
                     <div class="col-xs-6"><input type="text" class="form-control" name="last_name" placeholder="Last Name" required="required"
-                      v-model="lastname">
+                      v-model="newUser.lastname">
                     </div>
                   </div>        	
                 </div>
@@ -86,7 +74,7 @@
                 <div class="form-group">
                   <input type="password" class="form-control" name="password" placeholder="Password" required="required" v-model="newUser.password">
                 </div>
-    
+      
                 <div class="form-group">
                   <label class="checkbox-inline"><input type="checkbox" required="required"> I accept the Terms of Use and Privacy Policy</label>
                 </div>
@@ -96,7 +84,8 @@
             </form>
               <div class="hint-text">
                 Already have an account? 
-                <a id="login-button">Login here</a> <!--onclick="show('signin');"-->
+                <!-- ADD THIS -->
+                <a href="#signin" id="login">Login here</a> <!--onclick="show('signin');"-->
               </div>
           </div>  
         </div>    
@@ -104,21 +93,21 @@
           <div class="signup-form">
             <form>
             
-            <div id="users1">
+            <div id="users">
               <h2>Login</h2>
               <hr>
               <div class="form-group">  
                 <div class="form-group">
-                  <input type="email" class="form-control" name="email" placeholder="Email" required="required" v-model="email">
+                  <input type="email" class="form-control" name="email" placeholder="Email" required="required" v-model="newUser.email">
                 </div>
 
                 <div class="form-group">
                   <input type="password" class="form-control" name="password" placeholder="Password" required="required"
-                      v-model="password">
+                      v-model="newUser.password">
                 </div>
 
                 <div class="form-group">
-                  <button type="submit" class="btn btn-primary btn-lg" id="createaccount">Log in</button>
+                  <button type="submit" class="btn btn-primary btn-lg" id="createLogIn">Log in</button>
                 </div>
               </div>
             </div>
@@ -183,30 +172,30 @@
               <div v-if="event.peopleAttending != null">
                 <b>People Attending:</b> {{event.peopleAttending}}
               </div>
-              <div v-if="event.reccuring === 1">
+              <!-- <div v-if="event.reccuring === 1">
                 <b>Reccuring:</b> every {{weekday[event.date.getDay()]}}
-              </div>
+              </div> -->
               <div v-if="event.reccuring === 2">
                 <b>Reccuring:</b> every Saturday and Sunday
               </div>
               <div v-if="event.reccuring === 5">
                 <b>Reccuring:</b> Monday-Friday
               </div>
-              <div v-if="event.calories.length > 0">
+              <!-- <div v-if="event.calories.length > 0">
                 <b>Calories:</b> {{event.calories.join(', ')}}
-              </div>
+              </div> -->
               <div v-if="event.duration > 0">
                 <b>Duration:</b> {{event.duration}} minutes
               </div>
               <div v-if="event.length > 0">
                 <b>Length:</b> {{event.length}} miles
               </div>
-              <!-- <div v-if="event.calories">
+              <div v-if="event.calories">
                 <b>Calories Burned:</b>
-                <li v-for="item in event.calories">
-                  {{calories.name}}: {{calories.num}}
-                </li>
-              </div> -->
+                <div v-for="(item, index) in event.calories">
+                  {{event.type[index]}}: {{event.calories[index]}}
+                </div>
+              </div>
               <div v-if="event.date != null">
                 <b>Sign up:</b> <a :href="event.signup" target="_blank">Link</a>
               </div>
@@ -214,32 +203,24 @@
                 <b>Park/Trail Map:</b> <a :href="event.signup" target="_blank">Link</a>
               </div>
               <button type="submit" v-on:click="saveEvent(index)">Save Event</button>
-              <button><a :href="createEvent(event)" target="_blank">Add to Calendar</a></button>
-              <!--
-              <add-to-calendar title="VueConf" 
-                 location= event.location
-                 :start="event.date"
-                 :end="event.date.setMinutes(event.date.getMinutes() + event.duration );"
-                 details="The first Official Vue.js Conference in the world!" 
-                 inline-template>
-                  <div>
-                
-                  <google-calendar id="google-calendar">
-                    <i class="fa fa-google"></i> Add to Google calendar
-                  </google-calendar>
-                  
-                  <microsoft-calendar id="microsoft-calendar">
-                    <i class="fa fa-windows"></i> Add to Microsoft live calendar
-                  </microsoft-calendar>
-                  
-                </div>
-              </add-to-calendar>
-              -->
+              <!--ADD THIS-->
+              <a v-on:click="createCalendarEvent(event)" target="_blank"> Add to Google Calendar</a>
+<!-- 
+              <div title="Add to Calendar" class="addeventatc">
+                Add to Calendar
+                <span class="start">{{event.date}}</span>
+                <span class="end">{{event.date}}</span>
+                <span class="timezone">America/Detroit</span>
+                <span class="title">{{event.name}}</span>
+                <span class="description">Description of the event</span>
+                <span class="location">{{event.location}}</span>
+              </div> -->
+            </div>
           </div>
         </div>
         <div class="page" id="profile" style="display:none">
           <h1> User Profile </h1>
-          <h2> Name: {{user.users[length(user.users)-1].firstname}} {{user.users[length(user.users)-1].lastname}}</h2>
+          <h2> Name: {{newUser.firstname}} {{user.users[length(user.users)-1].lastname}}</h2>
           <h2> Email: {{user.users[length(user.users)-1].email}}</h2>
           <h2> Address: {{user.users[length(user.users)-1].address}}</h2>
           <h2> Weight: {{user.users[length(user.users)-1].weight}}</h2>
@@ -247,7 +228,7 @@
           <h2> Age: {{user.users[length(user.users)-1].age}}</h2>
           <h2> Gender: {{user.users[length(user.users)-1].gender}}</h2>
           Events Saved: 
-          <div v-if="savedEvents.length > 0"  v-for="(event, index) in savedEvents" :key="index" class = "col-lg-6 col-md-6 col-sm-6" style='margin-bottom: 50px; display: inline; height: 250px' >
+          <div v-for="(event, index) in newUser.signedUpEvents" :key="index" class = "col-lg-6 col-md-6 col-sm-6" style='margin-bottom: 50px; display: inline; height: 250px' >
               <div v-if="event.name != ''">
                 <b>Name:</b> {{event.name}}
               </div>
@@ -304,6 +285,8 @@
           <div v-else>
             No events saved!
           </div>
+          
+          
         </div>
         <div class="page" id="createEvent" style="display: none;">
           <form>
@@ -320,7 +303,7 @@
                 
                 <form>
                   <label>Date:</label>
-                  <input type="datetime-local" id="eventDate" name="eventDate" style="color:black;">
+                  <input type="datetime-local" id="eventDate" name="eventDate" style="color:black;" v-model="newEvent.date">
                 </form>
 
                 <div class="form-group">
@@ -355,10 +338,11 @@
                   <input type="text" class="form-control" name="signup" placeholder="Signup Link" v-model="newEvent.signup">
                 </div>         
                 <div class="form-group">
-                  <button type="submit" class="btn btn-primary btn-lg" id="createaccount" v-on:click="createEvent()">Submit</button>
+                  <button type="submit" class="btn btn-primary btn-lg" id="eventCreate" v-on:click="createEvent()">Submit</button>
                 </div>
             </form>
         </div>
+
       </div>          
     </body>
 </html>
