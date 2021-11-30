@@ -1,11 +1,13 @@
 //for firebase
-// import { initializeApp } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js";
-// import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-analytics.js";
-// import { getDatabase, ref, set, get, child, push, update } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-database.js"
-
+/*import { initializeApp } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-analytics.js";
+import { getDatabase, ref, set, get, child, push, update } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-database.js"*/
 //Move between pages
 
-$(document).ready(function () { 
+
+$(document).ready(function () {
+  //ADD THIS
+  $('.signin').hide()
 
   function show(elementID) {
     var element = document.getElementById(elementID);
@@ -26,6 +28,11 @@ $(document).ready(function () {
   
   // $('#login').click(function() {show('signin')});
 
+  // $("body").on("click", "#createaccount", function() {
+  //   $( "#events" ).toggle();
+  //   $( "#signup" ).toggle();
+  // });
+
   $("body").on("click", "#viewProfile", function() {
     $( "#profile" ).toggle();
     $( "#events" ).toggle();
@@ -34,6 +41,11 @@ $(document).ready(function () {
     $( "#createEvent").toggle();
     $( "#events" ).toggle();
   });
+
+//   $('.login').click(function() {
+//     $('.signup').hide()
+//     $('.signin').show()
+// });
   
   //Date picker for create event
   var today = new Date();
@@ -44,32 +56,32 @@ $(document).ready(function () {
    dd = '0' + dd;
   }
 
-  if (mm < 10) {
-    mm = '0' + mm;
-  } 
-      
-  today = yyyy + '-' + mm + '-' + dd;
-  document.getElementById("eventDate").setAttribute("min", today);
+if (mm < 10) {
+   mm = '0' + mm;
+} 
+    
+today = yyyy + '-' + mm + '-' + dd;
+document.getElementById("eventDate").setAttribute("min", today);
 
   //firebase code
-  // const firebaseConfig = {
-  //   apiKey: "AIzaSyAJLVuhJLdCzFeadmK_m2RUdy2qZMbdKPk",
-  //   authDomain: "eecs493final-3143e.firebaseapp.com",
-  //   projectId: "eecs493final-3143e",
-  //   storageBucket: "eecs493final-3143e.appspot.com",
-  //   messagingSenderId: "469444665579",
-  //   appId: "1:469444665579:web:7acc5a04f970c522cb1eae",
-  //   measurementId: "G-B7BPCM6TD2"
-  // };
-  // // Initialize Firebase
-  // const app = initializeApp(firebaseConfig);
-  // const analytics = getAnalytics(app);
-  // const db = getDatabase(app);
-  // console.log(db);
+  /*const firebaseConfig = {
+    apiKey: "AIzaSyAJLVuhJLdCzFeadmK_m2RUdy2qZMbdKPk",
+    authDomain: "eecs493final-3143e.firebaseapp.com",
+    projectId: "eecs493final-3143e",
+    storageBucket: "eecs493final-3143e.appspot.com",
+    messagingSenderId: "469444665579",
+    appId: "1:469444665579:web:7acc5a04f970c522cb1eae",
+    measurementId: "G-B7BPCM6TD2"
+  };
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+  const db = getDatabase(app);
+  console.log(db);*/
   
   
-  //old vue code 
-  //$('.signin').hide()
+        //old vue code 
+        // $('.signin').hide()
     var eventsVue = new Vue({
         el: "#events",
         data() {
@@ -132,25 +144,26 @@ $(document).ready(function () {
                 }
               },
 
-              //ONLY CALL CALCULATE CALORIES IF USER WEIGHT IS NOT NULL
               calculateCalories: function() { 
-                //
                 var MET = [{name: "Cycling", num: 6.8}, {name: "Walking", num: 4.3}, {name: "Running", num: 9.8}, {name: "Zumba", num: 7.3}, {name: "Kickboxing", num: 7.5},
                 {name: "Hiit", num: 8}, {name: "Yoga", num: 2.5}, {name: "Cardio", num: 7.5}, {name: "Strength", num: 5}, {name: "Pilates", num: 3.8},{name: "Jogging", num: 8} ]
+
                 this.eventsList.forEach(element => {
                   element.type.forEach(typeElement => {
                     //search in calorie array for the type
+                    if (MET.find(o => o.name === typeElement) != undefined) {
                     let currentMET = MET.find(o => o.name === typeElement).num; 
-                    
-                    let curWeight = user.users[length(user.users)-1].weight * 0.453592;
+                    let curWeight = user.newUser.weight * 0.453592;
                     let currentCal = ((3.5 * currentMET * curWeight)/200) * element.duration; 
                     element.calories.push(currentCal); 
+                    }
                   })
                 })
               },
               saveEvent: function(eventIndex) {
                 //Add event to user profile - how to access specific user? 
-                user.users[length(user.users)-1].savedEvents.push(eventsList[eventIndex]); 
+                user.users[length(user.users)-1].savedEvents.push(eventsList[eventIndex]);
+                // users.signedUpEvents.push(eventsList[eventIndex]); 
               },
               //Filters
               sortEvents: function(type) {
@@ -286,35 +299,70 @@ $(document).ready(function () {
                   this.totalEventsList = JSON.parse(JSON.stringify(this.eventsList));
           },
           createEvent: function(){
-            this.newEvent.type = this.types.split(",");
-            this.newEvent.calories = this.cal.split(',').map(i => Number(i));
+            this.newEvent.type = types.split(",");
+            this.newEvent.calories = cal.split(',').map(i => Number(i));
             this.totalEventsList.push(this.newEvent);
             this.eventsList.push(this.newEvent);
-            this.numEvents = this.eventsList.length;
           },
+          //ADD THIS
           createCalendarEvent: function(event){
-            /*var date = event.date.toLocaleDateString();
+            const newDate = event.date;
+            d2 = new Date(newDate);
+                        
+            endDate = d2.setMinutes(newDate.getMinutes()+event.duration);            
+
+            calEvent = {
+              start: newDate,
+              end: endDate,
+              text: event.name,
+              location: event.location,
+              busy: true
+            };
+
+             calEvent.start = new Date(calEvent.start).toISOString()
+
+             calEvent.start = calEvent.start.toString()            
+
+             calEvent.start = calEvent.start.replace(/[^a-zA-Z 0-9]+/g, '')
+
+             calEvent.end = new Date(calEvent.end).toISOString()
+
+             calEvent.end = calEvent.end.toString()
+
+             calEvent.end = calEvent.end.replace(/[^a-zA-Z 0-9]+/g, '')
+    
+            link = 'http://www.google.com/calendar/event?action=TEMPLATE&text=' + calEvent.text + '&dates=' + 
+            calEvent.start + '/' + calEvent.end + '&location=' + calEvent.location;
+
+            link = link.replace(/\s/g, '%')
+            console.log(event.date)
+            window.open(link)
+          }
+          /*createCalendarEvent: function(event, type){
+            var date = event.date.toLocaleDateString();
             var time = event.date.toLocaleTimeString();
             var newDateObj = new Date();
             newDateObj.setTime(event.date.getTime() + event.duration);
             var date2 = newDateObj.toLocaleDateString();
-            var time2 = newDateObj.toLocaleTimeString();*/
-            endDate = event.date.setMinutes(event.date.getMinutes() + event.duration);
-            eventDetails = event.type.join(', ');
+            var time2 = newDateObj.toLocaleTimeString();
             const calEvent = {
-              start: event.date,
-              end: endDate,
+              start: date + ' ' + time,
+              end: date2 + ' ' + time2,
+              duration: [event.duration, "minutes"],
               text: event.name,
-              details: eventDetails,
+              details: event.type.join(', '),
               location: event.location,
-              busy: true
+              busy: true,
+              guests: [
+              ]
             };
-            
-            link = 'http://www.google.com/calendar/event?action=TEMPLATE&text=' + calEvent.text + '&dates=' + calEvent.start + '/' + calEvent.end + '&details=' + calEvent.details + '&location=' + calEvent.location;
-            console.log(link)
-            return link;
-
-          }
+            if(type === "Google"){
+              return 'http://www.google.com/calendar/event?action=TEMPLATE&text=' + calEven.text + '&dates=' + calEven.start + '/' + calEven.end + '&details=' + calEven.details + '&location=' + calEven.location;
+            }
+            else{
+              return calendarLink.ics(calEvent);
+            }
+          }*/
       }
     });
     
@@ -323,33 +371,58 @@ $(document).ready(function () {
     //new java script code
     //TODO: save users array info even after page has reloaded
     var user = new Vue({
-        el: "#users1",
+        el: "#users",
         data() {
-            return{
+            return {
               newUser: {
-                email: '',
-                password: '',
+                email: 'admin@umich.edu',
+                password: 'password',
                 address: '',
                 age: undefined,
                 gender: ' ',
                 zipcode: '',
                 height: undefined,
-                weight: undefined,
+                weight: 120,
                 firstname: '',
                 lastname: '',
-                savedEvents: [],
+                signedUpEvents: []
               },
-              users: [],
+              // users:[{email:"admin@umich.edu", password: "password", address: '', age: 20, gender: "female", zipcode: '48104',
+              // height: 23, weight: 120, firstname: "EECS", lastname: "IA", signedUpEvents: []}]
             }
         },
         methods: {
-          addUsers:function() {
-            //User to test login
-            this.users.push({email:"admin@umich.edu", password: "password", address: '', age: 20, gender: "female", zipcode: '48104',
-            height: 23, weight: 120, firstname: 'EECS', lastname: 'IA'})
+          login:function(){
+            //using firebase
+            one = 0;
+            for(let u in snapshot.val()["array"]) {
+              if(u.email === this.email && u.password === this.password) {
+                one = 1;
+                break;
+              }
+            }
+            if(one === 0) {
+              alert("Incorrect username and password combination.");
+            }
             
+          },
+          //ADD THIS
+          signupParse:function(){
+                if(this.email === '' || this.password === '' || this.zipcode === '' || this.firstname === '' || 
+                this.lastname === '') {
+                  console.log(JSON.stringify(this.email))
+                  console.log(JSON.stringify(this.firstname))
+                alert("Required fields have not been filled out")
+            }
+            else if(this.password != this.reentered) {
+                alert("Passwords do not match")
+            }
+            
+              $('#signup').hide()
+              console.log("signup has been hidden")
+              $('#events').show()
+              console.log("wow we hid it")
           }
-          
             // login:function(){
             //   //using firebase
             //   one = 0;
@@ -373,64 +446,49 @@ $(document).ready(function () {
             //   if(one === 0) {
             //     alert("Incorrect username and password combination.")
             //   }*/
-            }
-        
+            // }
+        }
     });
-    user.addUsers();
-    
-    $('#login-button').click(function() {
-      console.log("login was clicked")
-        $('#signup').hide()
-        //$('#signin').show()
-        // login()
-    });
+    // user.users.push({email:"admin@umich.edu", password: "password", address: '', age: 20, gender: "female", zipcode: '48104',
+    // height: 23, weight: 120, firstname: "EECS", lastname: "IA", signedUpEvents: []});
+    // user.users.push(user.newUser); 
 
     $('#createaccount').click(function() {
-        $('#signup').hide()
-        $('#events').show()
-        if(user.newUser.email === '' || user.newUser.password === '' || user.newUser.zipcode === '' || user.newUser.firstname === '' || 
-            user.newUser.lastname === '') {
-            alert("Required fields have not been filled out");
+      eventsVue.calculateCalories();
+      $( "#signup" ).toggle();
+      $( "#events" ).toggle();
+      // if(user.email === '' || user.password === '' || user.zipcode === '' || user.firstname === '' || 
+      //     user.lastname === '') {
+      //     alert("Required fields have not been filled out");
+      // }
+      // else {
+      //   $( "#users" ).toggle();
+      //   $( "#events" ).toggle();
+      // }
+     /*else {
+        //firebase code -> adding users to database
+        const dbRef = ref(database);
+        get(dbRef).then((snapshot) => {
+          if(snapshot.exists()) {
+              var current = snapshot.val()["array"];
+              var newArray = current.push(user);
+              set(ref(db, “array”), newArray);
+          }
+          else {
+            //adding first user
+              var newArray = [user];
+              set(ref(db, “array”), newArray);
+          }
         }
-        // else if(user.newUser.password != user.reentered) {
-        //     alert("Passwords do not match");
-        // }
-       else {
-         user.users.push(user.newUser);
-         // https://www.tutorialspoint.com/firebase/firebase_arrays.htm
-         // ^^^^^ check ths out, very helpful for push and set
+          //users.push(user);
+          //UNCOMMENT WHEN DONE CODING
+          // $( "#users" ).toggle();
+          // $( "#events" ).toggle();
+      }*/
+      // $( "#users" ).toggle();
+      // $( "#events" ).toggle();
+      //test
+  })
 
-          //firebase code -> adding users to database
-          /*const dbRef = ref(db);
-          get(dbRef).then((snapshot) => {
-            if(snapshot.exists()) {
-              // example
-            //   firebase.database().ref('/uri/to/list').push(
-            //     newElement,
-            //     err => console.log(err ? 'error while pushing' : 'successful push')
-            // )
-                dbRef.push(user);
-                var current = snapshot.val()["array"];
-                var newArray = current.push(user);
-                set(ref(db, array), {array:newArray});
-            }
-
-            // https://stackoverflow.com/questions/44263996/firebase-pushing-array-javascript
-            // https://console.firebase.google.com/u/0/project/eecs493final-3143e/database/eecs493final-3143e-default-rtdb/data
-
-            else {
-              //adding first user
-                var newArray = [user];
-                set(ref(db, array), {array:newArray});
-            }
-          });*/
-            //UNCOMMENT WHEN DONE CODING
-            $( "#users" ).toggle();
-            $( "#events" ).toggle();
-        }
-        // $( "#users" ).toggle();
-        // $( "#events" ).toggle();
-        //test
-    })
     
 });
