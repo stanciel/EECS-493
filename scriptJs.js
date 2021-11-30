@@ -1,13 +1,11 @@
 //for firebase
-/*import { initializeApp } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-analytics.js";
-import { getDatabase, ref, set, get, child, push, update } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-database.js"*/
+// import { initializeApp } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js";
+// import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-analytics.js";
+// import { getDatabase, ref, set, get, child, push, update } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-database.js"
+
 //Move between pages
 
-Vue.use(AddToCalendar);
-
-$(document).ready(function () {
-
+$(document).ready(function () { 
 
   function show(elementID) {
     var element = document.getElementById(elementID);
@@ -23,10 +21,10 @@ $(document).ready(function () {
     element.style.display = 'block';
   }
 
-  $('#createaccount').click(function() {show('events')});
+  // $('#createaccount').click(function() {show('events')});
   // $('#createEvent').click(function() {show('events')});
   
-  $('#login').click(function() {show('signin')});
+  // $('#login').click(function() {show('signin')});
 
   $("body").on("click", "#viewProfile", function() {
     $( "#profile" ).toggle();
@@ -46,32 +44,32 @@ $(document).ready(function () {
    dd = '0' + dd;
   }
 
-if (mm < 10) {
-   mm = '0' + mm;
-} 
-    
-today = yyyy + '-' + mm + '-' + dd;
-document.getElementById("eventDate").setAttribute("min", today);
+  if (mm < 10) {
+    mm = '0' + mm;
+  } 
+      
+  today = yyyy + '-' + mm + '-' + dd;
+  document.getElementById("eventDate").setAttribute("min", today);
 
   //firebase code
-  /*const firebaseConfig = {
-    apiKey: "AIzaSyAJLVuhJLdCzFeadmK_m2RUdy2qZMbdKPk",
-    authDomain: "eecs493final-3143e.firebaseapp.com",
-    projectId: "eecs493final-3143e",
-    storageBucket: "eecs493final-3143e.appspot.com",
-    messagingSenderId: "469444665579",
-    appId: "1:469444665579:web:7acc5a04f970c522cb1eae",
-    measurementId: "G-B7BPCM6TD2"
-  };
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-  const db = getDatabase(app);
-  console.log(db);*/
+  // const firebaseConfig = {
+  //   apiKey: "AIzaSyAJLVuhJLdCzFeadmK_m2RUdy2qZMbdKPk",
+  //   authDomain: "eecs493final-3143e.firebaseapp.com",
+  //   projectId: "eecs493final-3143e",
+  //   storageBucket: "eecs493final-3143e.appspot.com",
+  //   messagingSenderId: "469444665579",
+  //   appId: "1:469444665579:web:7acc5a04f970c522cb1eae",
+  //   measurementId: "G-B7BPCM6TD2"
+  // };
+  // // Initialize Firebase
+  // const app = initializeApp(firebaseConfig);
+  // const analytics = getAnalytics(app);
+  // const db = getDatabase(app);
+  // console.log(db);
   
   
-        //old vue code 
-        $('.signin').hide()
+  //old vue code 
+  //$('.signin').hide()
     var eventsVue = new Vue({
         el: "#events",
         data() {
@@ -136,23 +134,23 @@ document.getElementById("eventDate").setAttribute("min", today);
 
               //ONLY CALL CALCULATE CALORIES IF USER WEIGHT IS NOT NULL
               calculateCalories: function() { 
+                //
                 var MET = [{name: "Cycling", num: 6.8}, {name: "Walking", num: 4.3}, {name: "Running", num: 9.8}, {name: "Zumba", num: 7.3}, {name: "Kickboxing", num: 7.5},
                 {name: "Hiit", num: 8}, {name: "Yoga", num: 2.5}, {name: "Cardio", num: 7.5}, {name: "Strength", num: 5}, {name: "Pilates", num: 3.8},{name: "Jogging", num: 8} ]
                 this.eventsList.forEach(element => {
                   element.type.forEach(typeElement => {
                     //search in calorie array for the type
                     let currentMET = MET.find(o => o.name === typeElement).num; 
-                    let curWeight = user.weight * 0.453592;
+                    
+                    let curWeight = user.users[length(user.users)-1].weight * 0.453592;
                     let currentCal = ((3.5 * currentMET * curWeight)/200) * element.duration; 
                     element.calories.push(currentCal); 
                   })
                 })
               },
-              calculateDistance: function() {
-              },
               saveEvent: function(eventIndex) {
                 //Add event to user profile - how to access specific user? 
-                // users.signedUpEvents.push(eventsList[eventIndex]); 
+                user.users[length(user.users)-1].savedEvents.push(eventsList[eventIndex]); 
               },
               //Filters
               sortEvents: function(type) {
@@ -288,36 +286,35 @@ document.getElementById("eventDate").setAttribute("min", today);
                   this.totalEventsList = JSON.parse(JSON.stringify(this.eventsList));
           },
           createEvent: function(){
-            this.newEvent.type = types.split(",");
-            this.newEvent.calories = cal.split(',').map(i => Number(i));
+            this.newEvent.type = this.types.split(",");
+            this.newEvent.calories = this.cal.split(',').map(i => Number(i));
             this.totalEventsList.push(this.newEvent);
             this.eventsList.push(this.newEvent);
-          }
-          /*createCalendarEvent: function(event, type){
-            var date = event.date.toLocaleDateString();
+            this.numEvents = this.eventsList.length;
+          },
+          createCalendarEvent: function(event){
+            /*var date = event.date.toLocaleDateString();
             var time = event.date.toLocaleTimeString();
             var newDateObj = new Date();
             newDateObj.setTime(event.date.getTime() + event.duration);
             var date2 = newDateObj.toLocaleDateString();
-            var time2 = newDateObj.toLocaleTimeString();
+            var time2 = newDateObj.toLocaleTimeString();*/
+            endDate = event.date.setMinutes(event.date.getMinutes() + event.duration);
+            eventDetails = event.type.join(', ');
             const calEvent = {
-              start: date + ' ' + time,
-              end: date2 + ' ' + time2,
-              duration: [event.duration, "minutes"],
+              start: event.date,
+              end: endDate,
               text: event.name,
-              details: event.type.join(', '),
+              details: eventDetails,
               location: event.location,
-              busy: true,
-              guests: [
-              ]
+              busy: true
             };
-            if(type === "Google"){
-              return 'http://www.google.com/calendar/event?action=TEMPLATE&text=' + calEven.text + '&dates=' + calEven.start + '/' + calEven.end + '&details=' + calEven.details + '&location=' + calEven.location;
-            }
-            else{
-              return calendarLink.ics(calEvent);
-            }
-          }*/
+            
+            link = 'http://www.google.com/calendar/event?action=TEMPLATE&text=' + calEvent.text + '&dates=' + calEvent.start + '/' + calEvent.end + '&details=' + calEvent.details + '&location=' + calEvent.location;
+            console.log(link)
+            return link;
+
+          }
       }
     });
     
@@ -325,14 +322,13 @@ document.getElementById("eventDate").setAttribute("min", today);
     
     //new java script code
     //TODO: save users array info even after page has reloaded
-    var users = [];
     var user = new Vue({
-        el: "#users",
+        el: "#users1",
         data() {
             return{
+              newUser: {
                 email: '',
                 password: '',
-                reentered: '',
                 address: '',
                 age: undefined,
                 gender: ' ',
@@ -341,71 +337,99 @@ document.getElementById("eventDate").setAttribute("min", today);
                 weight: undefined,
                 firstname: '',
                 lastname: '',
-                signedUpEvents: []
+                savedEvents: [],
+              },
+              users: [],
             }
         },
         methods: {
-            login:function(){
-              //using firebase
-              one = 0;
-              for(let u in snapshot.val()["array"]) {
-                if(u.email === this.email && u.password === this.password) {
-                  one = 1;
-                  break;
-                }
-              }
-              if(one === 0) {
-                alert("Incorrect username and password combination.");
-              }
+          addUsers:function() {
+            //User to test login
+            this.users.push({email:"admin@umich.edu", password: "password", address: '', age: 20, gender: "female", zipcode: '48104',
+            height: 23, weight: 120, firstname: 'EECS', lastname: 'IA'})
+            
+          }
+          
+            // login:function(){
+            //   //using firebase
+            //   one = 0;
+            //   for(let u in snapshot.val()["array"]) {
+            //     if(u.email === this.email && u.password === this.password) {
+            //       one = 1;
+            //       break;
+            //     }
+            //   }
+            //   if(one === 0) {
+            //     alert("Incorrect username and password combination.");
+            //   }
               
-              /*one = 0;
-              for(let u in users) {
-                if(u.email === this.email && u.password === this.password) {
-                  one = 1;
-                  break;
-                }
-              }
-              if(one === 0) {
-                alert("Incorrect username and password combination.")
-              }*/
+            //   /*one = 0;
+            //   for(let u in users) {
+            //     if(u.email === this.email && u.password === this.password) {
+            //       one = 1;
+            //       break;
+            //     }
+            //   }
+            //   if(one === 0) {
+            //     alert("Incorrect username and password combination.")
+            //   }*/
             }
-        }
+        
     });
-    $('.login').click(function() {
-        $('.signup').hide()
-        $('.signin').show()
+    user.addUsers();
+    
+    $('#login-button').click(function() {
+      console.log("login was clicked")
+        $('#signup').hide()
+        //$('#signin').show()
+        // login()
     });
 
-    $('.createaccount').click(function() {
-        if(user.email === '' || user.password === '' || user.zipcode === '' || user.firstname === '' || 
-            user.lastname === '') {
+    $('#createaccount').click(function() {
+        $('#signup').hide()
+        $('#events').show()
+        if(user.newUser.email === '' || user.newUser.password === '' || user.newUser.zipcode === '' || user.newUser.firstname === '' || 
+            user.newUser.lastname === '') {
             alert("Required fields have not been filled out");
         }
-        else if(user.password != user.reentered) {
-            alert("Passwords do not match");
-        }
-       /*else {
+        // else if(user.newUser.password != user.reentered) {
+        //     alert("Passwords do not match");
+        // }
+       else {
+         user.users.push(user.newUser);
+         // https://www.tutorialspoint.com/firebase/firebase_arrays.htm
+         // ^^^^^ check ths out, very helpful for push and set
+
           //firebase code -> adding users to database
-          const dbRef = ref(database);
+          /*const dbRef = ref(db);
           get(dbRef).then((snapshot) => {
             if(snapshot.exists()) {
+              // example
+            //   firebase.database().ref('/uri/to/list').push(
+            //     newElement,
+            //     err => console.log(err ? 'error while pushing' : 'successful push')
+            // )
+                dbRef.push(user);
                 var current = snapshot.val()["array"];
                 var newArray = current.push(user);
-                set(ref(db, “array”), newArray);
+                set(ref(db, array), {array:newArray});
             }
+
+            // https://stackoverflow.com/questions/44263996/firebase-pushing-array-javascript
+            // https://console.firebase.google.com/u/0/project/eecs493final-3143e/database/eecs493final-3143e-default-rtdb/data
+
             else {
               //adding first user
                 var newArray = [user];
-                set(ref(db, “array”), newArray);
+                set(ref(db, array), {array:newArray});
             }
-          }
-            //users.push(user);
+          });*/
             //UNCOMMENT WHEN DONE CODING
-            // $( "#users" ).toggle();
-            // $( "#events" ).toggle();
-        }*/
-        $( "#users" ).toggle();
-        $( "#events" ).toggle();
+            $( "#users" ).toggle();
+            $( "#events" ).toggle();
+        }
+        // $( "#users" ).toggle();
+        // $( "#events" ).toggle();
         //test
     })
     
