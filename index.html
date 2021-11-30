@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="eecs493.css">
 
@@ -116,21 +117,8 @@
           </div>
         </div>    
 
-        <!-- <button type="button" class="login">log in</button>
-        <button type="button" class="signup">sign up</button>
-        <div class="signup-form">
-            <input type="text" placeholder="*Email Address" class="input" v-model="email">
-            <input type="text" placeholder="*Password" class="input" v-model="password">
-            <input type="text" placeholder="*Re-enter Password" class="input" v-model="reentered">
-            <input type="text" placeholder="*First Name" class="input" v-model="firstname">
-            <input type="text" placeholder="*Last Name" class="input" v-model="lastname">
-            <input type="text" placeholder="Home Address" class="input" v-model="address">
-            <input type="text" placeholder="*Zip Code" class="input" v-model="zipcode">
-            <input type="text" placeholder="Age" class="input" v-model="age">
-            <input type="text" placeholder="Weight (lbs)" class="input" v-model="weight">
-            <input type="text" placeholder="Height (in)" class="input" v-model="height">
-            <button type="button" class="createaccount">Create Account</button> -->
         <div class="page" id="events" style="display:none">
+          <button id= "viewProfile">View Profile</button>
             <nav class="navbar navbar-default">
               <div class="container">
                 <div class="navbar-header">
@@ -148,13 +136,14 @@
               Events Found: {{numEvents}}
             </h4>
             <div class="dropdown">
-              <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort list of events by:
+              <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Sort list of events by:
               <span class="caret"></span></button>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+              <ul class="dropdown-menu">
                 <li><a v-bind:class = "[sortDate ? 'dropdown-item active' : 'dropdown-item']" @click="sortEvents(1)" href="#">Date</a></li>
                 <li><a v-bind:class = "[sortDuration ? 'dropdown-item active' : 'dropdown-item']" @click="sortEvents(2)" href="#">Duration</a></li>
                 <li><a v-bind:class = "[sortPrice ? 'dropdown-item active' : 'dropdown-item']" @click="sortEvents(3)" href="#">Price</a></li>
               </ul>
+              <button id= "createEventButton">Create Event</button>
             </div>
             
             <div v-if="eventsList.length > 0"  v-for="(event, index) in eventsList" :key="index" class = "col-lg-6 col-md-6 col-sm-6" style='margin-bottom: 50px; display: inline; height: 250px' >
@@ -162,7 +151,7 @@
                 <b>Name:</b> {{event.name}}
               </div>
               <div v-if="event.type.length > 0">
-                <b>Type:</b> {{event.type.join(', ')}}
+                <b>Type of Event:</b> {{event.type.join(', ')}}
               </div>
               <div v-if="event.date != null">
                 <b>Date:</b> {{event.date}}
@@ -185,9 +174,15 @@
               <div v-if="event.peopleAttending != null">
                 <b>People Attending:</b> {{event.peopleAttending}}
               </div>
-<!--               <div v-if="event.reccuring !== ''">
-                <b>reccuring:</b> {{event.reccuring}}
-              </div> -->
+              <div v-if="event.reccuring === 1">
+                <b>Reccuring:</b> every {{weekday[event.date.getDay()]}}
+              </div>
+              <div v-if="event.reccuring === 2">
+                <b>Reccuring:</b> every Saturday and Sunday
+              </div>
+              <div v-if="event.reccuring === 5">
+                <b>Reccuring:</b> Monday-Friday
+              </div>
               <div v-if="event.calories.length > 0">
                 <b>Calories:</b> {{event.calories.join(', ')}}
               </div>
@@ -197,13 +192,23 @@
               <div v-if="event.length > 0">
                 <b>Length:</b> {{event.length}} miles
               </div>
-              <div v-if="event.signin !== ''">
+              <!-- <div v-if="event.calories">
+                <b>Calories Burned:</b>
+                <li v-for="item in event.calories">
+                  {{calories.name}}: {{calories.num}}
+                </li>
+              </div> -->
+              <div v-if="event.date != null">
                 <b>Sign up:</b> <a :href="event.signup" target="_blank">Link</a>
               </div>
+              <div v-if="event.date == null">
+                <b>Park/Trail Map:</b> <a :href="event.signup" target="_blank">Link</a>
+              </div>
+              <button type="submit" v-on:click="saveEvent(index)">Save Event</button>
               <div title="Add to Calendar" class="addeventatc">
                 Add to Calendar
-                <span class="start">{{event.date.toLocaleDateString() +' '+ event.date.toLocaleTimeString() }}</span>
-                <span class="end">{{event.date.toLocaleDateString() + ' ' +(event.date.getTime() + event.duration)}}</span>
+                <span class="start">{{event.date}}</span>
+                <span class="end">{{event.date}}</span>
                 <span class="timezone">America/Detroit</span>
                 <span class="title">{{event.name}}</span>
                 <span class="description">Description of the event</span>
@@ -211,7 +216,66 @@
             </div>
           </div>
         </div>
-      </div>
+        <div class="page" id="profile" style="display:none">
+          <h1> User Profile </h1>
+          <h2> Name </h2>
+          Events Saved: 
+        </div>
+        <div class="page" id="createEvent" style="display: none;">
+          <form>
+              <h2>Create Event</h2>
+              <p>Please fill in this form to create a new event!</p>
+              <hr>
+                <div class="form-group">
+                  <input type="text" class="form-control" name="name" placeholder="Event Name" required="required" v-model="newEvent.name">    	
+                </div>
+
+                <div class="form-group">
+                  <input type="text" class="form-control" name="type" placeholder="Type of Event (seperate by comma if more than one)" required="required" v-model="types">
+                </div>
+                
+                <form>
+                  <label>Date:</label>
+                  <input type="datetime-local" id="eventDate" name="eventDate" style="color:black;">
+                </form>
+
+                <div class="form-group">
+                  <input type="text" class="form-control" name="location" placeholder="Location" required="required" v-model="newEvent.location">
+                </div>
+
+                <div class="form-group">
+                  <input type="number" class="form-control" name="price" placeholder="Price" v-model="newEvent.price">
+                </div>
+
+                <div class="form-group">
+                  <input type="number" class="form-control" name="openSpots" placeholder="Open Spots" v-model="newEvent.openSpots">
+                </div>
+
+                <div class="form-group">
+                  <input type="number" class="form-control" name="peopleAttending" placeholder="Number of People Attending" v-model="newEvent.peopleAttending">
+                </div>
+
+                <div class="form-group">
+                  <input type="number" class="form-control" name="reccuring" placeholder="Number of times event happens per week" v-model="newEvent.reccuring">
+                </div>        
+                <div class="form-group">
+                  <input type="text" class="form-control" name="calories" placeholder="Calories" v-model="cal">
+                </div> 
+                <div class="form-group">
+                  <input type="number" class="form-control" name="duration" placeholder="Duration" v-model="newEvent.duration">
+                </div>
+                <div class="form-group">
+                  <input type="number" class="form-control" name="length" placeholder="Length of Trail"  v-model="newEvent.length">
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" name="signup" placeholder="Signup Link" v-model="newEvent.signup">
+                </div>         
+                <div class="form-group">
+                  <button type="submit" class="btn btn-primary btn-lg" id="createaccount" v-on:click="createEvent()">Submit</button>
+                </div>
+            </form>
+        </div>
+
       </div>          
     </body>
 </html>
