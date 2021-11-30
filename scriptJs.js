@@ -153,8 +153,9 @@ document.getElementById("eventDate").setAttribute("min", today);
                     if (MET.find(o => o.name === typeElement) != undefined) {
                     let currentMET = MET.find(o => o.name === typeElement).num; 
                     let curWeight = user.newUser.weight * 0.453592;
-                    let currentCal = ((3.5 * currentMET * curWeight)/200) * element.duration; 
+                    let currentCal = Math.round(((3.5 * currentMET * curWeight)/200) * element.duration); 
                     element.calories.push(currentCal); 
+                    
                     }
                   })
                 })
@@ -171,12 +172,12 @@ document.getElementById("eventDate").setAttribute("min", today);
                       this.sortDuration = false;
                       this.sortPrice = false;
                       this.eventsList.sort(function(a,b) {
-                          let dateA = a.date;
-                          let dateB = b.date;
+                          let dateA = new Date(a.date);
+                          let dateB = new Date(b.date);
                           if (dateA.getTime() < dateB.getTime()) {
                               return -1;
                           }
-                          else if (datA.getTime() > dateB.getTime()) {
+                          else if (dateA.getTime() > dateB.getTime()) {
                               return 1;
                           }
                           return 0;
@@ -271,7 +272,7 @@ document.getElementById("eventDate").setAttribute("min", today);
                   this.eventsList.push({name:"Restorative Flow", type: ["Yoga", "Stretch"], date: new Date(2021, 11, 2, 12, 30),location:"CCRB", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: 1, calories: [], duration: 50, length: 0, signup: "https://recsports.umich.edu/groupx/schedule/"});
                   this.eventsList.push({name:"Tabata", type: ["Hiit"], date: new Date(2021, 11, 2, 4, 45),location:"IMSB", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: 1, calories: [], duration: 50, length: 0, signup: "https://recsports.umich.edu/groupx/schedule/"});
                   this.eventsList.push({name:"Cycle", type: ["Cycling"], date: new Date(2021, 11, 2, 5),location:"CCRB", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: 1, calories: [], duration: 50, length: 0, signup: "https://recsports.umich.edu/groupx/schedule/"});
-                  this.eventsList.push({name:"Power Flow", type: ["Yoga"], date: new Date(2021, 11, 2, 7, 30),location:"CCRB", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: 1, calories: [], duration: 50, length: 0, signup: "https://recsports.umich.edu/groupx/schedule/"});
+                  this.eventsList.push({name:"Power Flow", type: ["Yoga"], date: new Date(2021, 11, 2, 7, 30),location:"CCRB", distance:0, price: 5, openSpots: null, peopleAttending: null, reccuring: 1, calories: [], duration: 50, length: 0, signup: "https://recsports.umich.edu/groupx/schedule/"});
 
                   //Friday
                   this.eventsList.push({name:"Cardio Core", type: ["Cardio"], date: new Date(2021, 11, 3, 11, 45),location:"IMSB", distance:0, price: null, openSpots: null, peopleAttending: null, reccuring: 1, calories: [], duration: 50, length: 0, signup: "https://recsports.umich.edu/groupx/schedule/"});
@@ -382,8 +383,8 @@ document.getElementById("eventDate").setAttribute("min", today);
                 zipcode: '',
                 height: undefined,
                 weight: 120,
-                firstname: '',
-                lastname: '',
+                firstname: 'EECS',
+                lastname: 'IA',
                 signedUpEvents: []
               },
               // users:[{email:"admin@umich.edu", password: "password", address: '', age: 20, gender: "female", zipcode: '48104',
