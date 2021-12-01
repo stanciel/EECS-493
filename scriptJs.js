@@ -1,4 +1,3 @@
-//Combined to one vue and extra comments removed:
 function showPage(elementID) {
   var element = document.getElementById(elementID);
   if (!element) {
@@ -80,11 +79,14 @@ document.getElementById("eventDate").setAttribute("min", today);
           },
           methods: {
               signupParse:function(){
-                  if(this.newUser.email === '' || this.newUser.password === '' || this.newUser.zipcode === '' || this.newUser.firstname === '' || 
-                  this.newUser.lastname === '') {
+                  if(this.newUser.email === '' || this.newUser.password === '' || this.newUser.gender === '' || this.newUser.zipcode === '' || this.newUser.firstname === '' || 
+                  this.newUser.lastname === '' || this.newUser.age === undefined || this.newUser.height === undefined || this.newUser.weight === undefined) {
                     console.log(JSON.stringify(this.newUser.email))
                     console.log(JSON.stringify(this.newUser.firstname))
                   alert("Required fields have not been filled out")
+                }
+                else {
+                  showPage('events');
                 }
               console.log("signup has been hidden")
             },
@@ -324,6 +326,7 @@ document.getElementById("eventDate").setAttribute("min", today);
 
     
 });
+
 
 
 
