@@ -451,7 +451,8 @@ document.getElementById("eventDate").setAttribute("min", today);
 
     $('#createaccount').click(function() {
       eventsVue.calculateCalories();
-      users.signupParse();
+      //users.signupParse();
+     
       // if(user.email === '' || user.password === '' || user.zipcode === '' || user.firstname === '' || 
       //     user.lastname === '') {
       //     alert("Required fields have not been filled out");
