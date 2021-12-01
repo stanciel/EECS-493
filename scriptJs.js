@@ -783,12 +783,7 @@ document.getElementById("eventDate").setAttribute("min", today);
 
     $('#createaccount').click(function() {
       eventsVue.calculateCalories();
-<<<<<<< HEAD
-      //users.signupParse();
-     
-=======
       user.signupParse();
->>>>>>> 48a4a22187965c07eff9ea3d2fc1e4f18fa4cfb2
       // if(user.email === '' || user.password === '' || user.zipcode === '' || user.firstname === '' || 
       //     user.lastname === '') {
       //     alert("Required fields have not been filled out");
