@@ -269,11 +269,11 @@
                 <b>Park/Trail Map:</b> <a :href="event.signup" target="_blank">Link</a>
               </div>
               <button><a :href="createEvent(event)" target="_blank">Add to Calendar</a></button>
+              <button onclick="showPage('events');" style="color:#0275d8;"> Back to Event Search</button>
           </div>
           <div v-else>
             No events saved!
           </div>
-          <button onclick="showPage('events');" style="color:#0275d8;"> Back to Event Search</button>
         </div>
         </div>
         <div class="page" id="createNewEvent" style="display: none;">
