@@ -87,8 +87,8 @@ document.getElementById("eventDate").setAttribute("min", today);
                 }
                 else {
                   showPage('events');
+                  console.log("signup has been hidden")
                 }
-              console.log("signup has been hidden")
             },
               searchEvents:function() {
                 if(this.search){
@@ -274,10 +274,12 @@ document.getElementById("eventDate").setAttribute("min", today);
                   this.totalEventsList = JSON.parse(JSON.stringify(this.eventsList));
           },
           createEvent: function(){
-            this.newEvent.type = types.split(",");
-            this.newEvent.calories = cal.split(',').map(i => Number(i));
+            this.newEvent.type = this.types.split(",");
+            this.newEvent.calories = this.cal.split(',').map(i => Number(i));
             this.totalEventsList.push(this.newEvent);
             this.eventsList.push(this.newEvent);
+            console.log(this.newEvent);
+            this.numEvents++;
           },
           //ADD THIS
           createCalendarEvent: function(event){
