@@ -106,6 +106,7 @@ document.getElementById("eventDate").setAttribute("min", today);
               searchEvents:function() {
                 if(this.search){
                   temp = JSON.parse(JSON.stringify(this.totalEventsList));
+                  
                   tempList = temp.filter(guide => {
                     const types = guide.type.map(name => name.toLowerCase());
                     inTypes = false
@@ -126,6 +127,7 @@ document.getElementById("eventDate").setAttribute("min", today);
                       || typeWithin === true
                       || this.search.includes(guide.duration)
                   })
+                  tempList.forEach(event => event.date = new Date(event.date))
                   this.eventsList = tempList
                   this.numEvents = this.eventsList.length; 
                 }
