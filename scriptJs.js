@@ -113,7 +113,6 @@ document.getElementById("eventDate").setAttribute("min", today);
                       || typeWithin === true
                       || this.search.includes(guide.duration)
                   })
-                  
                   this.eventsList = tempList
                   this.numEvents = this.eventsList.length; 
                 }
