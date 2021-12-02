@@ -90,6 +90,19 @@ document.getElementById("eventDate").setAttribute("min", today);
                   console.log("signup has been hidden")
                 }
             },
+              logIn:function(){
+                this.newUser.email = "admin@gmail.com";
+                this.newUser.password = "password";
+                this.newUser.address = "2260 Hayward St, Ann Arbor, MI";
+                this.newUser.zipcode = "48109";
+                this.newUser.age = 21;
+                this.newUser.height = 64;
+                this.newUser.weight = 128;
+                this.newUser.firstname = "Rhea";
+                this.newUser.lastname = "Bhakhri";
+                showPage('events');
+                console.log("signup has been hidden")
+          },
               searchEvents:function() {
                 if(this.search){
                   temp = JSON.parse(JSON.stringify(this.totalEventsList));
@@ -330,6 +343,9 @@ document.getElementById("eventDate").setAttribute("min", today);
       bigVue.calculateCalories();
       bigVue.signupParse();
   })
+  $('#createLogIn').click(function() {
+    bigVue.logIn();
+})
 
     
 });
