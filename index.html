@@ -214,7 +214,6 @@
           <h2> Weight: {{newUser.weight}}</h2>
           <h2> Height: {{newUser.height}}</h2>
           <h2> Age: {{newUser.age}}</h2>
-          <h2> Gender: {{newUser.gender}}</h2>
           <h2> Events Saved: </h2>
           <div v-if="newUser.signedUpEvents.length > 0 ">
             <div v-for="(event, index) in newUser.signedUpEvents" :key="index" class = "col-lg-6 col-md-6 col-sm-6" style='margin-bottom: 50px; display: inline; height: 250px' >
