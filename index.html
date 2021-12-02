@@ -206,7 +206,7 @@
             </div>
           </div>
         </div>
-          <div class="page" id="profile" style="display:none">
+        <div class="page" id="profile" style="display:none">
           <h1> User Profile </h1>
           <h2> Name: {{newUser.firstname}} </h2>
           <h2> Email: {{newUser.email}}</h2>
@@ -215,8 +215,8 @@
           <h2> Height: {{newUser.height}}</h2>
           <h2> Age: {{newUser.age}}</h2>
           <h2> Events Saved: </h2>
-          <div v-if="newUser.signedUpEvents.length > 0 ">
-            <div v-for="(event, index) in newUser.signedUpEvents" :key="index" class = "col-lg-6 col-md-6 col-sm-6" style='margin-bottom: 50px; display: inline; height: 250px' >
+          <div v-if="newUser.savedEvents.length > 0">
+            <div  v-for="(event, index) in newUser.savedEvents" class="col-lg-6 col-md-6 col-sm-6" style='margin-bottom: 50px; display: inline; height: 250px' >
               <div v-if="event.name != ''">
                 <b>Name:</b> {{event.name}}
               </div>
@@ -233,7 +233,7 @@
                 <b>Distance:</b> {{event.distance}}
               </div>
               <div v-if="event.price > 0">
-                <b>Price:</b> {{event.price}}
+                <b>Price:</b> ${{event.price}}
               </div>
               <div v-else>
                 <b>Price:</b> free
@@ -269,12 +269,12 @@
                 <b>Park/Trail Map:</b> <a :href="event.signup" target="_blank">Link</a>
               </div>
               <button><a :href="createEvent(event)" target="_blank">Add to Calendar</a></button>
-              <button onclick="showPage('events');" style="color:#0275d8;"> Back to Event Search</button>
+            </div>
           </div>
           <div v-else>
             No events saved!
           </div>
-        </div>
+          <button onclick="showPage('events');" style="color:#0275d8;"> Back to Event Search</button>
         </div>
         <div class="page" id="createNewEvent" style="display: none;">
           <div class="signup-form">

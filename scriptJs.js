@@ -72,7 +72,7 @@ document.getElementById("eventDate").setAttribute("min", today);
                   weight: undefined,
                   firstname: '',
                   lastname: '',
-                  signedUpEvents: []
+                  savedEvents: []
                 },
               weekday: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
             }
@@ -138,7 +138,12 @@ document.getElementById("eventDate").setAttribute("min", today);
               },
               saveEvent: function(eventIndex) {
                 //Add event to user profile - how to access specific user? 
-                this.newUser.savedEvents.push(eventsList[eventIndex]);
+                if(this.newUser.savedEvents){
+                  this.newUser.savedEvents.push(this.eventsList[eventIndex]);
+                }
+                else{
+                  this.newUser.savedEvents = [this.eventsList[eventIndex]];
+                }
               },
               //Filters
               sortEvents: function(type) {
