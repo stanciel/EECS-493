@@ -201,7 +201,7 @@
               <div v-if="event.date == null">
                 <b>Park/Trail Map:</b> <a :href="event.signup" target="_blank">Link</a>
               </div>
-              <button class="btn btn-default" style="color:#0275d8;" type="submit" v-on:click="saveEvent(index)">Save Event</button>
+              <button class="btn btn-default" style="color:#0275d8;" type="button" v-on:click="saveEvent(index)">Save Event</button>
               <a v-on:click="createCalendarEvent(event)" target="_blank"> <button class="btn btn-default" style="color:#0275d8;">Add to Google Calendar</button></a>
             </div>
           </div>
@@ -216,7 +216,7 @@
           <h2> Age: {{newUser.age}}</h2>
           <h2> Events Saved: </h2>
           <div v-if="newUser.savedEvents.length > 0">
-            <div  v-for="(event, index) in newUser.savedEvents" class="col-lg-6 col-md-6 col-sm-6" style='margin-bottom: 50px; display: inline; height: 250px' >
+            <div  v-for="(event, index) in newUser.savedEvents" :key="index" class="col-lg-6 col-md-6 col-sm-6" style='margin-bottom: 50px; display: inline; height: 250px' >
               <div v-if="event.name != ''">
                 <b>Name:</b> {{event.name}}
               </div>
@@ -268,7 +268,7 @@
               <div v-if="event.date == null">
                 <b>Park/Trail Map:</b> <a :href="event.signup" target="_blank">Link</a>
               </div>
-              <button><a :href="createEvent(event)" target="_blank">Add to Calendar</a></button>
+              <a v-on:click="createCalendarEvent(event)" target="_blank"> <button class="btn btn-default" style="color:#0275d8;">Add to Google Calendar</button></a>
             </div>
           </div>
           <div v-else>

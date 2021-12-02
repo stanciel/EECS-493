@@ -283,7 +283,7 @@ document.getElementById("eventDate").setAttribute("min", today);
             this.newEvent.calories = this.cal.split(',').map(i => Number(i));
             this.totalEventsList.push(this.newEvent);
             this.eventsList.push(this.newEvent);
-            console.log(this.newEvent);
+            //console.log(this.newEvent);
             this.numEvents++;
           },
           //ADD THIS
