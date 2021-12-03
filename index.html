@@ -202,7 +202,7 @@
                 <b>Park/Trail Map:</b> <a :href="event.signup" target="_blank">Link</a>
               </div>
               <button class="btn btn-default" style="color:#0275d8;" type="button" v-on:click="saveEvent(index)">Save Event</button>
-              <a v-on:click="createCalendarEvent(event)" target="_blank"> <button class="btn btn-default" style="color:#0275d8;">Add to Google Calendar</button></a>
+              <a v-if="event.date != null" v-on:click="createCalendarEvent(event)" target="_blank"> <button class="btn btn-default" style="color:#0275d8;">Add to Google Calendar</button></a>
             </div>
           </div>
         </div>
@@ -242,7 +242,7 @@
                       <b>Distance:</b> {{event.distance}}
                     </div>
                     <div v-if="event.price > 0">
-                      <b>Price:</b> ${{event.price}}
+                      <b>Price:</b> <span>&dollar;</span> {{event.price}}
                     </div>
                     <div v-else>
                       <b>Price:</b> free
