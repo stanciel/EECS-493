@@ -118,7 +118,7 @@
             <nav class="navbar navbar-default">
               <div class="container">
                 <div class="navbar-header">
-                    <h3 style="color:#FDC160;">Fitness Event Search</h3>
+                    <h3 style="color:#FDC160; font-family: 'Roboto', sans-serif">Fitness Event Search</h3>
                 </div>
               </div>
             </nav>
@@ -126,7 +126,7 @@
             <div class="search-container">
               <h4>Enter Event Name or Duration: </h4>
               <input style="color: black;" type="text" v-model="search" placeholder="Type here to search...">
-              <button type="submit" v-on:click="searchEvents()" ><i class="fa fa-search"></i></button>
+              <button type="submit" v-on:click="searchEvents()" class="searchbutton"><i class="fa fa-search"></i></button>
               <button id= "viewProfile" onclick="showPage('profile');" style="color:#0275d8;">View Profile</button>
             </div>
             <h4>
@@ -206,76 +206,89 @@
             </div>
           </div>
         </div>
-        <div class="page" id="profile" style="display:none">
-          <h1> User Profile </h1>
-          <h2> Name: {{newUser.firstname}} </h2>
-          <h2> Email: {{newUser.email}}</h2>
-          <h2> Address: {{newUser.address}}</h2>
-          <h2> Weight: {{newUser.weight}}</h2>
-          <h2> Height: {{newUser.height}}</h2>
-          <h2> Age: {{newUser.age}}</h2>
-          <h2> Events Saved: </h2>
-          <div v-if="newUser.savedEvents.length > 0">
-            <div  v-for="(event, index) in newUser.savedEvents" :key="index" class="col-lg-6 col-md-6 col-sm-6" style='margin-bottom: 50px; display: inline; height: 250px' >
-              <div v-if="event.name != ''">
-                <b>Name:</b> {{event.name}}
+        <!-- User Profile -->
+        <div class="page" id="profile" style="display:none; font-family: 'roboto'; padding: 10px" >
+          <div class="signup-form">
+            <button onclick="showPage('events');" class="btn btn-default" style="color:#0275d8; color:black"> Back to Event Search</button>
+                  
+            <h1 style="font-weight: bold; font-size: x-large; color:black"> User Profile </h1>
+                  
+                      <p> Name: {{newUser.firstname}} {{newUser.lastname}} </p>          
+                      <p> Email: {{newUser.email}}</p>
+                      <p> Address: {{newUser.address}}</p>
+                      <p> Weight: {{newUser.weight}} lbs</p>
+                      <p> Height: {{newUser.height}} cm</p>
+                      <p> Age: {{newUser.age}}</p>
+                      
+                  <hr style="margin: 5px">
+                <div v-if="newUser.savedEvents.length > 0" style="background-color: white;">
+                  
+                  <div  v-for="(event, index) in newUser.savedEvents" :key="index" class="col-lg-6 col-md-6 col-sm-6" 
+                  style='margin-bottom: 50px; display: inline; height: 250px; color: black'>
+                  <!-- <p> Events Saved: </p> -->
+                    <div v-if="event.name != ''">
+                      <b>Name:</b> {{event.name}}
+                    </div>
+                    <div v-if="event.type.length > 0">
+                      <b>Type of Event:</b> {{event.type.join(', ')}}
+                    </div>
+                    <div v-if="event.date != null">
+                      <b>Date:</b> {{event.date}}
+                    </div>
+                    <div v-if="event.location != ''">
+                      <b>Location:</b> {{event.location}}
+                    </div>
+                    <div v-if="event.distance > 0">
+                      <b>Distance:</b> {{event.distance}}
+                    </div>
+                    <div v-if="event.price > 0">
+                      <b>Price:</b> ${{event.price}}
+                    </div>
+                    <div v-else>
+                      <b>Price:</b> free
+                    </div>
+                    <div v-if="event.openSpots !== null">
+                      <b>Open Spots:</b> {{event.openSpots}}
+                    </div>
+                    <div v-if="event.peopleAttending != null">
+                      <b>People Attending:</b> {{event.peopleAttending}}
+                    </div>
+                    <div v-if="event.reccuring === 1">
+                      <b>Reccuring:</b> every {{weekday[event.date.getDay()]}}
+                    </div>
+                    <div v-if="event.reccuring === 2">
+                      <b>Reccuring:</b> every Saturday and Sunday
+                    </div>
+                    <div v-if="event.reccuring === 5">
+                      <b>Reccuring:</b> Monday-Friday
+                    </div>
+                    <div v-if="event.calories.length > 0">
+                      <b>Calories:</b> {{event.calories.join(', ')}}
+                    </div>
+                    <div v-if="event.duration > 0">
+                      <b>Duration:</b> {{event.duration}} minutes
+                    </div>
+                    <div v-if="event.length > 0">
+                      <b>Length:</b> {{event.length}} miles
+                    </div>
+                    <div v-if="event.date != null">
+                      <b>Sign up:</b> <a :href="event.signup" target="_blank">Link</a>
+                    </div>
+                    <div v-if="event.date == null">
+                      <b>Park/Trail Map:</b> <a :href="event.signup" target="_blank">Link</a>
+                    </div>
+                  <!-- </div>
+                  <a v-on:click="createCalendarEvent(event)" target="_blank"> <button class="btn btn-default" style="color:#0275d8; margin-bottom: 5px; color: white;">Add to Google Calendar</button></a>
+                </div> -->
+                </div>
               </div>
-              <div v-if="event.type.length > 0">
-                <b>Type of Event:</b> {{event.type.join(', ')}}
-              </div>
-              <div v-if="event.date != null">
-                <b>Date:</b> {{event.date}}
-              </div>
-              <div v-if="event.location != ''">
-                <b>Location:</b> {{event.location}}
-              </div>
-              <div v-if="event.distance > 0">
-                <b>Distance:</b> {{event.distance}}
-              </div>
-              <div v-if="event.price > 0">
-                <b>Price:</b> ${{event.price}}
-              </div>
-              <div v-else>
-                <b>Price:</b> free
-              </div>
-              <div v-if="event.openSpots !== null">
-                <b>Open Spots:</b> {{event.openSpots}}
-              </div>
-              <div v-if="event.peopleAttending != null">
-                <b>People Attending:</b> {{event.peopleAttending}}
-              </div>
-              <div v-if="event.reccuring === 1">
-                <b>Reccuring:</b> every {{weekday[event.date.getDay()]}}
-              </div>
-              <div v-if="event.reccuring === 2">
-                <b>Reccuring:</b> every Saturday and Sunday
-              </div>
-              <div v-if="event.reccuring === 5">
-                <b>Reccuring:</b> Monday-Friday
-              </div>
-              <div v-if="event.calories.length > 0">
-                <b>Calories:</b> {{event.calories.join(', ')}}
-              </div>
-              <div v-if="event.duration > 0">
-                <b>Duration:</b> {{event.duration}} minutes
-              </div>
-              <div v-if="event.length > 0">
-                <b>Length:</b> {{event.length}} miles
-              </div>
-              <div v-if="event.date != null">
-                <b>Sign up:</b> <a :href="event.signup" target="_blank">Link</a>
-              </div>
-              <div v-if="event.date == null">
-                <b>Park/Trail Map:</b> <a :href="event.signup" target="_blank">Link</a>
-              </div>
-              <a v-on:click="createCalendarEvent(event)" target="_blank"> <button class="btn btn-default" style="color:#0275d8;">Add to Google Calendar</button></a>
+            <div v-else>
+             <p> No events saved! </p>
+            </div>       
             </div>
-          </div>
-          <div v-else>
-            No events saved!
-          </div>
-          <button onclick="showPage('events');" style="color:#0275d8;"> Back to Event Search</button>
-        </div>
+          </div>   
+
+
         <div class="page" id="createNewEvent" style="display: none;">
           <div class="signup-form">
           <form>

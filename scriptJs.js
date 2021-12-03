@@ -87,7 +87,6 @@ document.getElementById("eventDate").setAttribute("min", today);
                 }
                 else {
                   showPage('events');
-                  console.log("signup has been hidden")
                 }
             },
               logIn:function(){
