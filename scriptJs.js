@@ -51,14 +51,14 @@ document.getElementById("eventDate").setAttribute("min", today);
                 type: [''], 
                 date: new Date(),
                 location: '', 
-                distance: 0,
+                distance: undefined,
                 price: null,
                 openSpots: null,
                 peopleAttending: null,
-                reccuring: 0,
+                reccuring: undefined,
                 calories: [],
-                duration: 0,
-                length: 0, 
+                duration: undefined,
+                length: undefined, 
                 signup: '',
               },
               newUser: {
@@ -161,6 +161,13 @@ document.getElementById("eventDate").setAttribute("min", today);
                 else{
                   this.newUser.savedEvents = [this.eventsList[eventIndex]];
                 }
+                alert("Your event has been saved!");
+              },
+              removeSavedEvent: function(index) {
+                if(this.newUser.savedEvents){
+                  this.newUser.savedEvents.splice(this.newUser.savedEvents.indexOf(index), 1);
+                }
+                alert("Your event has been removed!");
               },
               //Filters
               sortEvents: function(type) {
