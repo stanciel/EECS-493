@@ -136,6 +136,7 @@ document.getElementById("eventDate").setAttribute("min", today);
                 this.eventsList = this.totalEventsList;
                 this.numEvents = this.eventsList.length; 
               },
+              
 
               calculateCalories: function() { 
                 var MET = [{name: "Cycling", num: 6.8}, {name: "Walking", num: 4.3}, {name: "Running", num: 9.8}, {name: "Zumba", num: 7.3}, {name: "Kickboxing", num: 7.5},
@@ -303,12 +304,34 @@ document.getElementById("eventDate").setAttribute("min", today);
                   this.totalEventsList = JSON.parse(JSON.stringify(this.eventsList));
           },
           createEvent: function(){
-            this.newEvent.type = this.types.split(",");
-            this.newEvent.calories = this.cal.split(',').map(i => Number(i));
-            this.totalEventsList.push(this.newEvent);
-            this.eventsList.push(this.newEvent);
-            //console.log(this.newEvent);
-            this.numEvents++;
+            if(this.newEvent.name == '' || this.newEvent.type == [''] || this.newEvent.price == undefined || 
+              this.newEvent.date == null || this.newEvent.location == '' || this.newEvent.duration == undefined) {
+                alert("Not all the required fields have been filled out");
+            }
+            else {
+              this.newEvent.type = this.types.split(",");
+              this.newEvent.calories = this.cal.split(',').map(i => Number(i));
+              this.totalEventsList.push(this.newEvent);
+              this.eventsList.push(this.newEvent);
+              //console.log(this.newEvent);
+              this.numEvents++;
+              showPage('events');
+              this.newEvent.name = '';
+              this.newEvent.type = ['']; 
+              this.types = '';
+              this.cal = '';
+              this.newEvent.date = new Date();
+              this.newEvent.location = '';
+              this.newEvent.distance = undefined;
+              this.newEvent.price = null;
+              this.newEvent.openSpots = null;
+              this.newEvent.peopleAttending = null;
+              this.newEvent.reccuring = undefined;
+              this.newEvent.calories = [];
+              this.newEvent.duration = undefined;
+              this.newEvent.length = undefined;
+              this.newEvent.signup = '';
+            }
           },
           //ADD THIS
           createCalendarEvent: function(event){
