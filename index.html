@@ -30,7 +30,7 @@
     <body>
       <div class='outer-container'>
         <div id="app">
-        <img src = "./ActiveInvites Logo.jpg" class='logo'>
+        <img src = "./ActiveInvites Logo.jpg" class='logo' alt = “ActiveInvites”>
         <div class="page" id="signup">
           <div class="signup-form">
             <form>
@@ -124,7 +124,7 @@
             </nav>
           <div class = "container">
             <div class="search-container">
-              <h4>Enter Event Name or Duration: </h4>
+              <h4>Enter Event Name or Duration (mins): </h4>
               <input style="color: black;" type="text" v-on:keyup.enter="searchEvents" v-model="search" placeholder="Type here to search...">
               <button type="submit" v-on:click="searchEvents()" class="searchbutton"><i class="fa fa-search"></i></button>
               <button id= "viewProfile" onclick="showPage('profile');" style="color:#0275d8;">View Profile</button>
@@ -146,61 +146,61 @@
             
             <div v-if="eventsList.length > 0"  v-for="(event, index) in eventsList" :key="index" class = "col-lg-6 col-md-6 col-sm-6" style='margin-bottom: 50px; display: inline; height: 250px' >
               <div v-if="event.name != ''">
-                <b>Name:</b> {{event.name}}
+                <strong>Name:</strong> {{event.name}}
               </div>
               <div v-if="event.type.length > 0">
-                <b>Type of Event:</b> {{event.type.join(', ')}}
+                <strong>Type of Event:</strong> {{event.type.join(', ')}}
               </div>
               <div v-if="event.date != null">
-                <b>Date:</b> {{event.date}}
+                <strong>Date:</strong> {{event.date}}
               </div>
               <div v-if="event.location != ''">
-                <b>Location:</b> {{event.location}}
+                <strong>Location:</strong> {{event.location}}
               </div>
               <div v-if="event.distance > 0">
-                <b>Distance:</b> {{event.distance}}
+                <strong>Distance:</strong> {{event.distance}}
               </div>
               <div v-if="event.price > 0">
-                <b>Price:</b> {{event.price}}
+                <strong>Price:</strong> {{event.price}}
               </div>
               <div v-else>
-                <b>Price:</b> free
+                <strong>Price:</strong> free
               </div>
               <div v-if="event.openSpots !== null">
-                <b>Open Spots:</b> {{event.openSpots}}
+                <strong>Open Spots:</strong> {{event.openSpots}}
               </div>
               <div v-if="event.peopleAttending != null">
-                <b>People Attending:</b> {{event.peopleAttending}}
+                <strong>People Attending:</strong> {{event.peopleAttending}}
               </div>
               <!-- <div v-if="event.reccuring === 1">
-                <b>Reccuring:</b> every {{weekday[event.date.getDay()]}}
+                <strong>Reccuring:</strong> every {{weekday[event.date.getDay()]}}
               </div> -->
               <div v-if="event.reccuring === 2">
-                <b>Reccuring:</b> every Saturday and Sunday
+                <strong>Reccuring:</strong> every Saturday and Sunday
               </div>
               <div v-if="event.reccuring === 5">
-                <b>Reccuring:</b> Monday-Friday
+                <strong>Reccuring:</strong> Monday-Friday
               </div>
               <!-- <div v-if="event.calories.length > 0">
-                <b>Calories:</b> {{event.calories.join(', ')}}
+                <strong>Calories:</strong> {{event.calories.join(', ')}}
               </div> -->
               <div v-if="event.duration > 0">
-                <b>Duration:</b> {{event.duration}} minutes
+                <strong>Duration:</strong> {{event.duration}} minutes
               </div>
               <div v-if="event.length > 0">
-                <b>Length:</b> {{event.length}} miles
+                <strong>Length:</strong> {{event.length}} miles
               </div>
               <div v-if="event.calories.length > 0">
-                <b>Calories Burned:</b>
+                <strong>Calories Burned:</strong>
                 <div v-for="(item, index) in event.calories">
                   {{event.type[index]}}: {{event.calories[index]}}
                 </div>
               </div>
               <div v-if="event.date != null">
-                <b>Sign up:</b> <a :href="event.signup" target="_blank">Link</a>
+                <strong>Sign up:</strong> <a :href="event.signup" target="_blank">Link</a>
               </div>
               <div v-if="event.date == null">
-                <b>Park/Trail Map:</b> <a :href="event.signup" target="_blank">Link</a>
+                <strong>Park/Trail Map:</strong> <a :href="event.signup" target="_blank">Link</a>
               </div>
               <button class="btn btn-default" style="color:#0275d8;" type="button" v-on:click="saveEvent(index)">Save Event</button>
               <a v-if="event.date != null" v-on:click="createCalendarEvent(event)" target="_blank"> <button class="btn btn-default" style="color:#0275d8;">Add to Google Calendar</button></a>
@@ -228,56 +228,57 @@
                   style='margin-bottom: 50px; display: inline; height: 250px; color: black'>
                   <!-- <p> Events Saved: </p> -->
                     <div v-if="event.name != ''">
-                      <b>Name:</b> {{event.name}}
+                      <strong>Name:</strong> {{event.name}}
                     </div>
                     <div v-if="event.type.length > 0">
-                      <b>Type of Event:</b> {{event.type.join(', ')}}
+                      <strong>Type of Event:</strong> {{event.type.join(', ')}}
                     </div>
                     <div v-if="event.date != null">
-                      <b>Date:</b> {{event.date}}
+                      <strong>Date:</strong> {{event.date}}
                     </div>
                     <div v-if="event.location != ''">
-                      <b>Location:</b> {{event.location}}
+                      <strong>Location:</strong> {{event.location}}
                     </div>
                     <div v-if="event.distance > 0">
-                      <b>Distance:</b> {{event.distance}}
+                      <strong>Distance:</strong> {{event.distance}}
                     </div>
                     <div v-if="event.price > 0">
-                      <b>Price:</b> <span>&dollar;</span> {{event.price}}
+                      <strong>Price:</strong> <span>&dollar;</span> {{event.price}}
                     </div>
                     <div v-else>
-                      <b>Price:</b> free
+                      <strong>Price:</strong> free
                     </div>
                     <div v-if="event.openSpots !== null">
-                      <b>Open Spots:</b> {{event.openSpots}}
+                      <strong>Open Spots:</strong> {{event.openSpots}}
                     </div>
                     <div v-if="event.peopleAttending != null">
-                      <b>People Attending:</b> {{event.peopleAttending}}
+                      <strong>People Attending:</strong> {{event.peopleAttending}}
                     </div>
                     <div v-if="event.reccuring === 1">
-                      <b>Reccuring:</b> every {{weekday[event.date.getDay()]}}
+                      <strong>Reccuring:</strong> every {{weekday[event.date.getDay()]}}
                     </div>
                     <div v-if="event.reccuring === 2">
-                      <b>Reccuring:</b> every Saturday and Sunday
+                      <strong>Reccuring:</strong> every Saturday and Sunday
                     </div>
                     <div v-if="event.reccuring === 5">
-                      <b>Reccuring:</b> Monday-Friday
+                      <strong>Reccuring:</strong> Monday-Friday
                     </div>
                     <div v-if="event.calories.length > 0">
-                      <b>Calories:</b> {{event.calories.join(', ')}}
+                      <strong>Calories:</strong> {{event.calories.join(', ')}}
                     </div>
                     <div v-if="event.duration > 0">
-                      <b>Duration:</b> {{event.duration}} minutes
+                      <strong>Duration:</strong> {{event.duration}} minutes
                     </div>
                     <div v-if="event.length > 0">
-                      <b>Length:</b> {{event.length}} miles
+                      <strong>Length:</strong> {{event.length}} miles
                     </div>
                     <div v-if="event.date != null">
-                      <b>Sign up:</b> <a :href="event.signup" target="_blank">Link</a>
+                      <strong>Sign up:</strong> <a :href="event.signup" target="_blank">Link</a>
                     </div>
                     <div v-if="event.date == null">
-                      <b>Park/Trail Map:</b> <a :href="event.signup" target="_blank">Link</a>
+                      <strong>Park/Trail Map:</strong> <a :href="event.signup" target="_blank">Link</a>
                     </div>
+                    <button id= "remove" v-on:click="removeSavedEvent(index)" style="color:#0275d8;">Remove Event</button>
                   <!-- </div>
                   <a v-on:click="createCalendarEvent(event)" target="_blank"> <button class="btn btn-default" style="color:#0275d8; margin-bottom: 5px; color: white;">Add to Google Calendar</button></a>
                 </div> -->
@@ -342,6 +343,9 @@
                 </div>         
                 <div class="form-group">
                   <button type="submit" class="btn btn-primary btn-lg" id="eventCreate" v-on:click="createEvent()" onclick="showPage('events');">Submit</button>
+                </div>
+                <div class="form-group">
+                  <button type="submit" class="btn btn-primary btn-lg" id="eventCreate" onclick="showPage('events');">Cancel</button>
                 </div>
             </form>
           </div>
