@@ -125,7 +125,7 @@
           <div class = "container">
             <div class="search-container">
               <h4>Enter Event Name or Duration: </h4>
-              <input style="color: black;" type="text" v-model="search" placeholder="Type here to search...">
+              <input style="color: black;" type="text" v-on:keyup.enter="searchEvents" v-model="search" placeholder="Type here to search...">
               <button type="submit" v-on:click="searchEvents()" class="searchbutton"><i class="fa fa-search"></i></button>
               <button id= "viewProfile" onclick="showPage('profile');" style="color:#0275d8;">View Profile</button>
               <button id= "resetButton" style="color:#0275d8;">See All Events</button>
