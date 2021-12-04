@@ -132,6 +132,11 @@ document.getElementById("eventDate").setAttribute("min", today);
                 }
               },
 
+              resetEvents:function() {
+                this.eventsList = this.totalEventsList;
+                this.numEvents = this.eventsList.length; 
+              },
+
               calculateCalories: function() { 
                 var MET = [{name: "Cycling", num: 6.8}, {name: "Walking", num: 4.3}, {name: "Running", num: 9.8}, {name: "Zumba", num: 7.3}, {name: "Kickboxing", num: 7.5},
                 {name: "Hiit", num: 8}, {name: "Yoga", num: 2.5}, {name: "Cardio", num: 7.5}, {name: "Strength", num: 5}, {name: "Pilates", num: 3.8},{name: "Jogging", num: 8} ]
@@ -346,6 +351,10 @@ document.getElementById("eventDate").setAttribute("min", today);
     bigVue.logIn();
     bigVue.calculateCalories();
 })
+
+  $('#resetButton').click(function() {
+      bigVue.resetEvents();
+  })
 
     
 });
