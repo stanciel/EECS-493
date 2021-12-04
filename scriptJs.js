@@ -129,6 +129,7 @@ document.getElementById("eventDate").setAttribute("min", today);
                   tempList.forEach(event => event.date = new Date(event.date))
                   this.eventsList = tempList
                   this.numEvents = this.eventsList.length; 
+                  bigVue.calculateCalories();
                 }
               },
 
@@ -384,6 +385,7 @@ document.getElementById("eventDate").setAttribute("min", today);
 
   $('#resetButton').click(function() {
       bigVue.resetEvents();
+      bigVue.calculateCalories();
   })
 
     
