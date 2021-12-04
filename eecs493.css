@@ -18,7 +18,7 @@
  }
  body {
   color: #fff;
-  background: #FDC160;
+  background: #E69615;
   font-family: 'Roboto', sans-serif;
 }
   .form-control{
@@ -48,7 +48,6 @@
   }
 .signup-form h2 {
   color: #333;
-  font-weight: bold;
       margin-top: 0;
   }
   .signup-form hr {
@@ -68,7 +67,6 @@
 }
   .signup-form .btn{        
       font-size: 16px;
-      font-weight: bold;
   background: #3598dc;
   border: none;
   min-width: 140px;
@@ -104,5 +102,4 @@ p{
   color: black;
   font-family: 'Roboto', sans-serif;
   font-size: large;
-  font-weight: bold;
 }
