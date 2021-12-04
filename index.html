@@ -298,24 +298,24 @@
               <p>Please fill in this form to create a new event!</p>
               <hr>
                 <div class="form-group">
-                  <input type="text" class="form-control" name="name" placeholder="Event Name" required="required" v-model="newEvent.name">    	
+                  <input type="text" class="form-control" name="name" placeholder="*Event Name" required="required" v-model="newEvent.name">    	
                 </div>
 
                 <div class="form-group">
-                  <input type="text" class="form-control" name="type" placeholder="Type of Event (seperate by comma if more than one)" required="required" v-model="types">
+                  <input type="text" class="form-control" name="type" placeholder="*Type of Event (seperate by comma if more than one)" required="required" v-model="types">
                 </div>
                 
                 <form>
-                  <label>Date:</label>
+                  <label>*Date:</label>
                   <input type="datetime-local" id="eventDate" name="eventDate" style="color:black;" v-model="newEvent.date">
                 </form>
 
                 <div class="form-group">
-                  <input type="text" class="form-control" name="location" placeholder="Location" required="required" v-model="newEvent.location">
+                  <input type="text" class="form-control" name="location" placeholder="*Location" required="required" v-model="newEvent.location">
                 </div>
 
                 <div class="form-group">
-                  <input type="number" class="form-control" name="price" placeholder="Price" v-model="newEvent.price">
+                  <input type="number" class="form-control" name="price" placeholder="*Price" v-model="newEvent.price">
                 </div>
 
                 <div class="form-group">
@@ -333,7 +333,7 @@
                   <input type="text" class="form-control" name="calories" placeholder="Calories" v-model="cal">
                 </div> 
                 <div class="form-group">
-                  <input type="number" class="form-control" name="duration" placeholder="Duration" v-model="newEvent.duration">
+                  <input type="number" class="form-control" name="duration" placeholder="*Duration" v-model="newEvent.duration">
                 </div>
                 <div class="form-group">
                   <input type="number" class="form-control" name="length" placeholder="Length of Trail"  v-model="newEvent.length">
@@ -342,9 +342,7 @@
                   <input type="text" class="form-control" name="signup" placeholder="Signup Link" v-model="newEvent.signup">
                 </div>         
                 <div class="form-group">
-                  <button type="submit" class="btn btn-primary btn-lg" id="eventCreate" v-on:click="createEvent()" onclick="showPage('events');">Submit</button>
-                </div>
-                <div class="form-group">
+                  <button type="submit" class="btn btn-primary btn-lg" id="eventCreate" v-on:click="createEvent()">Submit</button>
                   <button type="submit" class="btn btn-primary btn-lg" id="eventCreate" onclick="showPage('events');">Cancel</button>
                 </div>
             </form>
