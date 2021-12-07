@@ -312,8 +312,8 @@ document.getElementById("eventDate").setAttribute("min", today);
             else {
               this.newEvent.type = this.types.split(",");
               this.newEvent.calories = this.cal.split(',').map(i => Number(i));
-              this.totalEventsList.push(this.newEvent);
-              this.eventsList.push(this.newEvent);
+              this.totalEventsList.push({name: this.newEvent.name, type: this.newEvent.type, date: this.newEvent.date,location:this.newEvent.location, distance: this.newEvent.distance, price: this.newEvent.price, openSpots: this.newEvent.openSpots, peopleAttending: this.newEvent.peopleAttending, reccuring: this.newEvent.reccuring, calories: this.newEvent.calories, duration: this.newEvent.duration, length: this.newEvent.length, signup: this.newEvent.signup});
+              this.eventsList.push({name: this.newEvent.name, type: this.newEvent.type, date: this.newEvent.date,location:this.newEvent.location, distance: this.newEvent.distance, price: this.newEvent.price, openSpots: this.newEvent.openSpots, peopleAttending: this.newEvent.peopleAttending, reccuring: this.newEvent.reccuring, calories: this.newEvent.calories, duration: this.newEvent.duration, length: this.newEvent.length, signup: this.newEvent.signup});
               //console.log(this.newEvent);
               this.numEvents++;
               showPage('events');
